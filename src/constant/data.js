@@ -63,6 +63,12 @@ export const menuItems = [
     link: "managetests",
   },
   {
+    title: "CRUD",
+    isHide: true,
+    icon: "heroicons-outline:clipboard-check",
+    link: "crud",
+  },
+  {
     title: "Table",
     isHide: true,
     icon: "heroicons-outline:chat",

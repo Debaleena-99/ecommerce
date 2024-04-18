@@ -12,6 +12,7 @@ const BankingPage = lazy(() => import("./pages/dashboard/banking"));
 const ManageAdmin = lazy(() => import("./pages/manage-admin"));
 const ManageRoles = lazy(() => import("./pages/manage-roles"));
 const ManageTests = lazy(() => import("./pages/manage-tests"));
+const Crud = lazy(() => import("./Crud"));
 
 
 const Login = lazy(() => import("./pages/auth/login"));
@@ -153,6 +154,7 @@ function App() {
         <Route path="/*" element={<Layout />}>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="ecommerce" element={<Ecommerce />} />
+          <Route path="crud" element={<Crud />} />
           <Route path="crm" element={<CrmPage />} />
           <Route path="project" element={<ProjectPage />} />
           <Route path="banking" element={<BankingPage />} />
