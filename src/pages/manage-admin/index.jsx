@@ -22,15 +22,15 @@ const COLUMNS = [
       return <span>{row?.cell?.value}</span>;
     },
   },
+  // {
+  //   Header: "Order",
+  //   accessor: "order",
+  //   Cell: (row) => {
+  //     return <span>#{row?.cell?.value}</span>;
+  //   },
+  // },
   {
-    Header: "Order",
-    accessor: "order",
-    Cell: (row) => {
-      return <span>#{row?.cell?.value}</span>;
-    },
-  },
-  {
-    Header: "customer",
+    Header: "Branch Name",
     accessor: "customer",
     Cell: (row) => {
       return (
@@ -79,21 +79,14 @@ const COLUMNS = [
       return (
         <span className="block w-full">
           <span
-            className={` inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 ${
-              row?.cell?.value === "paid"
+            className={` inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 ${row?.cell?.value === "Active"
                 ? "text-success-500 bg-success-500"
                 : ""
-            } 
-            ${
-              row?.cell?.value === "due"
-                ? "text-warning-500 bg-warning-500"
-                : ""
-            }
-            ${
-              row?.cell?.value === "cancled"
+              } 
+            ${row?.cell?.value === "Inactive"
                 ? "text-danger-500 bg-danger-500"
                 : ""
-            }
+              }
             
              `}
           >
@@ -129,7 +122,21 @@ const COLUMNS = [
             <button className="action-btn" type="button">
               <Icon icon="heroicons:trash" />
             </button>
+             {/* <button className="action-btn" type="button" onClick={handleDeleteClick}>
+                        <Icon icon="heroicons:trash" />
+                    </button> */}
           </Tooltip>
+           {/* Delete confirmation modal */}
+           {/* {isDeleteModalOpen && (
+                    <Modal
+                        title="Confirm Deletion"
+                        onConfirm={handleConfirmDelete}
+                        onCancel={handleCancelDelete}
+                    >
+                        <p>Are you sure you want to delete this item?</p>
+                    </Modal>
+                )} */}
+
         </div>
       );
     },
@@ -158,7 +165,28 @@ const IndeterminateCheckbox = React.forwardRef(
   }
 );
 
-const index = ({ title = "Advanced Table Two" }) => {
+const index = ({ title = "Admin Details" }) => {
+
+  // const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+  // // Handle delete button click
+  // const handleDeleteClick = () => {
+  //   setIsDeleteModalOpen(true);
+  // };
+
+  // // Handle confirm delete in modal
+  // const handleConfirmDelete = () => {
+  //   // Perform deletion logic here
+
+  //   // Close the modal
+  //   setIsDeleteModalOpen(false);
+  // };
+
+  // // Handle cancel delete in modal
+  // const handleCancelDelete = () => {
+  //   setIsDeleteModalOpen(false);
+  // };
+
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => advancedTable, []);
 
@@ -298,9 +326,8 @@ const index = ({ title = "Advanced Table Two" }) => {
           <ul className="flex items-center  space-x-3  rtl:space-x-reverse">
             <li className="text-xl leading-4 text-slate-900 dark:text-white rtl:rotate-180">
               <button
-                className={` ${
-                  !canPreviousPage ? "opacity-50 cursor-not-allowed" : ""
-                }`}
+                className={` ${!canPreviousPage ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
                 onClick={() => gotoPage(0)}
                 disabled={!canPreviousPage}
               >
@@ -309,9 +336,8 @@ const index = ({ title = "Advanced Table Two" }) => {
             </li>
             <li className="text-sm leading-4 text-slate-900 dark:text-white rtl:rotate-180">
               <button
-                className={` ${
-                  !canPreviousPage ? "opacity-50 cursor-not-allowed" : ""
-                }`}
+                className={` ${!canPreviousPage ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
                 onClick={() => previousPage()}
                 disabled={!canPreviousPage}
               >
@@ -323,11 +349,10 @@ const index = ({ title = "Advanced Table Two" }) => {
                 <button
                   href="#"
                   aria-current="page"
-                  className={` ${
-                    pageIdx === pageIndex
+                  className={` ${pageIdx === pageIndex
                       ? "bg-slate-900 dark:bg-slate-600  dark:text-slate-200 text-white font-medium "
                       : "bg-slate-100 dark:bg-slate-700 dark:text-slate-400 text-slate-900  font-normal  "
-                  }    text-sm rounded leading-[16px] flex h-6 w-6 items-center justify-center transition-all duration-150`}
+                    }    text-sm rounded leading-[16px] flex h-6 w-6 items-center justify-center transition-all duration-150`}
                   onClick={() => gotoPage(pageIdx)}
                 >
                   {page + 1}
@@ -336,9 +361,8 @@ const index = ({ title = "Advanced Table Two" }) => {
             ))}
             <li className="text-sm leading-4 text-slate-900 dark:text-white rtl:rotate-180">
               <button
-                className={` ${
-                  !canNextPage ? "opacity-50 cursor-not-allowed" : ""
-                }`}
+                className={` ${!canNextPage ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
                 onClick={() => nextPage()}
                 disabled={!canNextPage}
               >
@@ -349,9 +373,8 @@ const index = ({ title = "Advanced Table Two" }) => {
               <button
                 onClick={() => gotoPage(pageCount - 1)}
                 disabled={!canNextPage}
-                className={` ${
-                  !canNextPage ? "opacity-50 cursor-not-allowed" : ""
-                }`}
+                className={` ${!canNextPage ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
               >
                 <Icon icon="heroicons:chevron-double-right-solid" />
               </button>
