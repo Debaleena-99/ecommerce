@@ -22,10 +22,10 @@ export const menuItems = [
         childtitle: "Project  Dashbaord",
         childlink: "project",
       },
-      {
-        childtitle: " CRM Dashbaord",
-        childlink: "crm",
-      },
+      // {
+      //   childtitle: " CRM Dashbaord",
+      //   childlink: "crm",
+      // },
       // {
       //   childtitle: "Banking Dashboard",
       //   childlink: "banking",
@@ -68,12 +68,12 @@ export const menuItems = [
     icon: "heroicons-outline:clipboard-check",
     link: "crud",
   },
-  {
-    title: "Table",
-    isHide: true,
-    icon: "heroicons-outline:chat",
-    link: "react-table",
-  },
+  // {
+  //   title: "Table",
+  //   isHide: true,
+  //   icon: "heroicons-outline:chat",
+  //   link: "react-table",
+  // },
 
   // {
   //   title: "Table",
@@ -91,39 +91,28 @@ export const menuItems = [
   //   ],
   // },
 
-  {
-    title: "Extra",
-    icon: "heroicons-outline:template",
+  // {
+  //   title: "Extra",
+  //   icon: "heroicons-outline:template",
 
-    child: [
-      
-      // {
-      //   childtitle: "Basic Table",
-      //   childlink: "table-basic",
-      //   childicon: "heroicons-outline:table",
-      // },
-      // {
-      //   childtitle: "Advanced table",
-      //   childlink: "table-advanced",
-      //   childicon: "heroicons-outline:table",
-      // },
-      {
-        childtitle: "Apex chart",
-        childlink: "appex-chart",
-        childicon: "heroicons-outline:chart-bar",
-      },
-      {
-        childtitle: "Chart js",
-        childlink: "chartjs",
-        childicon: "heroicons-outline:chart-bar",
-      },
-      {
-        childtitle: "Map",
-        childlink: "map",
-        childicon: "heroicons-outline:map",
-      },
-    ],
-  },
+  //   child: [
+  //     {
+  //       childtitle: "Apex chart",
+  //       childlink: "appex-chart",
+  //       childicon: "heroicons-outline:chart-bar",
+  //     },
+  //     {
+  //       childtitle: "Chart js",
+  //       childlink: "chartjs",
+  //       childicon: "heroicons-outline:chart-bar",
+  //     },
+  //     {
+  //       childtitle: "Map",
+  //       childlink: "map",
+  //       childicon: "heroicons-outline:map",
+  //     },
+  //   ],
+  // },
   // {
   //   title: "Chat",
   //   isHide: true,

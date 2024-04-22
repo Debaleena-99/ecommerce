@@ -1,9 +1,9 @@
-
 import React, { useState, useMemo } from "react";
-import { advancedTable } from "../../constant/table-data";
+import Modal from "@/components/ui/Modal"; // Import your modal component here
 import Card from "@/components/ui/Card";
 import Icon from "@/components/ui/Icon";
 import Tooltip from "@/components/ui/Tooltip";
+import { advancedTable } from "../../constant/table-data";
 import {
   useTable,
   useRowSelect,
@@ -12,7 +12,7 @@ import {
   usePagination,
 } from "react-table";
 import GlobalFilter from "../table/react-tables/GlobalFilter";
-// import GlobalFilter from "./GlobalFilter";
+import DeleteAdmin from "./DeleteAdmin";
 
 const COLUMNS = [
   {
@@ -22,13 +22,6 @@ const COLUMNS = [
       return <span>{row?.cell?.value}</span>;
     },
   },
-  // {
-  //   Header: "Order",
-  //   accessor: "order",
-  //   Cell: (row) => {
-  //     return <span>#{row?.cell?.value}</span>;
-  //   },
-  // },
   {
     Header: "Branch Name",
     accessor: "customer",
@@ -79,16 +72,17 @@ const COLUMNS = [
       return (
         <span className="block w-full">
           <span
-            className={` inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 ${row?.cell?.value === "Active"
+            className={` inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 ${
+              row?.cell?.value === "Active"
                 ? "text-success-500 bg-success-500"
                 : ""
-              } 
-            ${row?.cell?.value === "Inactive"
+            } 
+            ${
+              row?.cell?.value === "Inactive"
                 ? "text-danger-500 bg-danger-500"
                 : ""
-              }
-            
-             `}
+            }
+          `}
           >
             {row?.cell?.value}
           </span>
@@ -99,7 +93,28 @@ const COLUMNS = [
   {
     Header: "action",
     accessor: "action",
-    Cell: (row) => {
+    Cell: ({ row }) => {
+      const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+      // Handle delete button click
+      const handleDeleteClick = () => {
+        // alert('hii');
+        setIsDeleteModalOpen(true);
+      };
+
+      // Handle confirm delete in modal
+      const handleConfirmDelete = () => {
+        // Perform deletion logic here
+
+        // Close the modal
+        setIsDeleteModalOpen(false);
+      };
+
+      // Handle cancel delete in modal
+      const handleCancelDelete = () => {
+        setIsDeleteModalOpen(false);
+      };
+
       return (
         <div className="flex space-x-3 rtl:space-x-reverse">
           <Tooltip content="View" placement="top" arrow animation="shift-away">
@@ -119,24 +134,20 @@ const COLUMNS = [
             animation="shift-away"
             theme="danger"
           >
-            <button className="action-btn" type="button">
+            <button className="action-btn" type="button" onClick={handleDeleteClick}>
               <Icon icon="heroicons:trash" />
             </button>
-             {/* <button className="action-btn" type="button" onClick={handleDeleteClick}>
-                        <Icon icon="heroicons:trash" />
-                    </button> */}
           </Tooltip>
-           {/* Delete confirmation modal */}
-           {/* {isDeleteModalOpen && (
-                    <Modal
-                        title="Confirm Deletion"
-                        onConfirm={handleConfirmDelete}
-                        onCancel={handleCancelDelete}
-                    >
-                        <p>Are you sure you want to delete this item?</p>
-                    </Modal>
-                )} */}
-
+          {/* Delete confirmation modal */}
+          {isDeleteModalOpen && (
+            <DeleteAdmin
+              title="Confirm Deletion"
+              onConfirm={handleConfirmDelete}
+              onCancel={handleCancelDelete}
+            >
+              <p className="text-red-600">Are you sure you want to delete this item?</p>
+            </DeleteAdmin>
+          )}
         </div>
       );
     },
@@ -165,28 +176,7 @@ const IndeterminateCheckbox = React.forwardRef(
   }
 );
 
-const index = ({ title = "Admin Details" }) => {
-
-  // const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-
-  // // Handle delete button click
-  // const handleDeleteClick = () => {
-  //   setIsDeleteModalOpen(true);
-  // };
-
-  // // Handle confirm delete in modal
-  // const handleConfirmDelete = () => {
-  //   // Perform deletion logic here
-
-  //   // Close the modal
-  //   setIsDeleteModalOpen(false);
-  // };
-
-  // // Handle cancel delete in modal
-  // const handleCancelDelete = () => {
-  //   setIsDeleteModalOpen(false);
-  // };
-
+const Index = ({ title = "Admin Details" }) => {
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => advancedTable, []);
 
@@ -326,8 +316,9 @@ const index = ({ title = "Admin Details" }) => {
           <ul className="flex items-center  space-x-3  rtl:space-x-reverse">
             <li className="text-xl leading-4 text-slate-900 dark:text-white rtl:rotate-180">
               <button
-                className={` ${!canPreviousPage ? "opacity-50 cursor-not-allowed" : ""
-                  }`}
+                className={` ${
+                  !canPreviousPage ? "opacity-50 cursor-not-allowed" : ""
+                }`}
                 onClick={() => gotoPage(0)}
                 disabled={!canPreviousPage}
               >
@@ -336,8 +327,9 @@ const index = ({ title = "Admin Details" }) => {
             </li>
             <li className="text-sm leading-4 text-slate-900 dark:text-white rtl:rotate-180">
               <button
-                className={` ${!canPreviousPage ? "opacity-50 cursor-not-allowed" : ""
-                  }`}
+                className={` ${
+                  !canPreviousPage ? "opacity-50 cursor-not-allowed" : ""
+                }`}
                 onClick={() => previousPage()}
                 disabled={!canPreviousPage}
               >
@@ -349,10 +341,11 @@ const index = ({ title = "Admin Details" }) => {
                 <button
                   href="#"
                   aria-current="page"
-                  className={` ${pageIdx === pageIndex
+                  className={` ${
+                    pageIdx === pageIndex
                       ? "bg-slate-900 dark:bg-slate-600  dark:text-slate-200 text-white font-medium "
                       : "bg-slate-100 dark:bg-slate-700 dark:text-slate-400 text-slate-900  font-normal  "
-                    }    text-sm rounded leading-[16px] flex h-6 w-6 items-center justify-center transition-all duration-150`}
+                  }    text-sm rounded leading-[16px] flex h-6 w-6 items-center justify-center transition-all duration-150`}
                   onClick={() => gotoPage(pageIdx)}
                 >
                   {page + 1}
@@ -361,8 +354,9 @@ const index = ({ title = "Admin Details" }) => {
             ))}
             <li className="text-sm leading-4 text-slate-900 dark:text-white rtl:rotate-180">
               <button
-                className={` ${!canNextPage ? "opacity-50 cursor-not-allowed" : ""
-                  }`}
+                className={` ${
+                  !canNextPage ? "opacity-50 cursor-not-allowed" : ""
+                }`}
                 onClick={() => nextPage()}
                 disabled={!canNextPage}
               >
@@ -373,8 +367,9 @@ const index = ({ title = "Admin Details" }) => {
               <button
                 onClick={() => gotoPage(pageCount - 1)}
                 disabled={!canNextPage}
-                className={` ${!canNextPage ? "opacity-50 cursor-not-allowed" : ""
-                  }`}
+                className={` ${
+                  !canNextPage ? "opacity-50 cursor-not-allowed" : ""
+                }`}
               >
                 <Icon icon="heroicons:chevron-double-right-solid" />
               </button>
@@ -387,6 +382,4 @@ const index = ({ title = "Admin Details" }) => {
   );
 };
 
-
-
-export default index;
+export default Index;
