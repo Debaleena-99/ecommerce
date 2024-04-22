@@ -30,6 +30,7 @@
     "cleave.js": "^1.6.0",
     "d3-array": "^3.2.2",
     "dayjs": "^1.11.7",
+    "formik": "^2.4.5",
     "framer-motion": "^10.12.12",
     "leaflet": "^1.9.3",
     "localforage": "^1.10.0",
@@ -61,6 +62,7 @@
     "swiper": "^8.4.5",
     "uuidv4": "^6.2.13",
     "yarn": "^1.22.19",
+    "yep": "^0.1.0",
     "yup": "^0.32.11"
   },
   "devDependencies": {

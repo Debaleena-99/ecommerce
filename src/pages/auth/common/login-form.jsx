@@ -42,54 +42,19 @@ const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 mt-5 mb-5">
-      <Textinput
-        name="username"
-        placeholder="Username"
-        // label="Username"
-        defaultValue="kminchelle"
-        type="text"
-        className="h-[48px] rounded-full"
-        register={register} // Pass register function
-      />
-      <Textinput
-        name="password"
-        placeholder="Password"
-        // label="Password"
-        type="password"
-        defaultValue="0lelplR"
-        className="h-[48px] rounded-full"
-        register={register} // Pass register function
-      />
-      <div className="flex justify-between">
-        <label className="flex items-center text-white">
-          <input
-            type="checkbox"
-            checked={checked}
-            onChange={() => setChecked(!checked)}
-            className="mr-2 text-white"
-          />
-          Keep me signed in
-        </label>
-        <Link
-          to="/forgot-password"
-          className="text-sm text-slate-800 dark:text-slate-400 leading-6 font-medium"
-        >
-          Forgot Password?
-        </Link>
-      </div>
     <>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={onSubmit}
       >
-        <Form className="space-y-4">
+        <Form className="space-y-4 mt-5 mb-5">
           <div className="flex flex-col space-y-1">
-            <label htmlFor="username">Username</label>
+            {/* <label htmlFor="username">Username</label> */}
             <Field
               id="username"
               name="username"
+              placeholder="Username"
               type="text"
               className="h-[48px] border rounded-md px-3"
             />
@@ -97,10 +62,11 @@ const LoginForm = () => {
           </div>
 
           <div className="flex flex-col space-y-1">
-            <label htmlFor="password">Password</label>
+            {/* <label htmlFor="password">Password</label> */}
             <Field
               id="password"
               name="password"
+              placeholder="Password"
               type="password"
               className="h-[48px] border rounded-md px-3"
             />
@@ -108,32 +74,26 @@ const LoginForm = () => {
           </div>
 
           <div className="flex justify-between">
-            <label className="flex items-center">
+            <label className="flex items-center text-white">
               <Field
                 type="checkbox"
                 name="keepSignedIn"
-                className="mr-2"
+                className="text-white"
               />
               Keep me signed in
             </label>
             <Link
               to="/forgot-password"
-              className="text-sm text-slate-800 dark:text-slate-400 leading-6 font-medium"
+              className="text-sm text-white dark:text-slate-400 leading-6 font-medium"
             >
               Forgot Password?
             </Link>
           </div>
 
-      <Button
-        type="submit"
-        text="Sign in"
-        className="btn bg-lime-500 text-white w-full block  text-center "
-      />
-    </form>
           <Button
             type="submit"
             text="Sign in"
-            className="btn btn-dark block w-full text-center"
+            className="btn text-white block w-full text-center bg-lime-500"
           />
         </Form>
       </Formik>
