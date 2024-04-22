@@ -74,12 +74,12 @@ const COLUMNS = [
           <span
             className={` inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 ${
               row?.cell?.value === "Active"
-                ? "text-success-500 bg-success-500"
+                ? "text-success-600 bg-success-500"
                 : ""
             } 
             ${
               row?.cell?.value === "Inactive"
-                ? "text-danger-500 bg-danger-500"
+                ? "text-danger-600 bg-danger-500"
                 : ""
             }
           `}
@@ -246,7 +246,7 @@ const Index = ({ title = "Admin Details" }) => {
                 className="min-w-full divide-y divide-slate-100 table-fixed dark:divide-slate-700"
                 {...getTableProps}
               >
-                <thead className="bg-slate-200 dark:bg-slate-700">
+                <thead className="bg-sky-900 dark:bg-slate-700">
                   {headerGroups.map((headerGroup) => (
                     <tr {...headerGroup.getHeaderGroupProps()}>
                       {headerGroup.headers.map((column) => (

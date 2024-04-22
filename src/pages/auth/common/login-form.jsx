@@ -34,30 +34,32 @@ const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 mt-5 mb-5">
       <Textinput
         name="username"
-        label="Username"
+        placeholder="Username"
+        // label="Username"
         defaultValue="kminchelle"
         type="text"
-        className="h-[48px]"
+        className="h-[48px] rounded-full"
         register={register} // Pass register function
       />
       <Textinput
         name="password"
-        label="Password"
+        placeholder="Password"
+        // label="Password"
         type="password"
         defaultValue="0lelplR"
-        className="h-[48px]"
+        className="h-[48px] rounded-full"
         register={register} // Pass register function
       />
       <div className="flex justify-between">
-        <label className="flex items-center">
+        <label className="flex items-center text-white">
           <input
             type="checkbox"
             checked={checked}
             onChange={() => setChecked(!checked)}
-            className="mr-2"
+            className="mr-2 text-white"
           />
           Keep me signed in
         </label>
@@ -72,7 +74,7 @@ const LoginForm = () => {
       <Button
         type="submit"
         text="Sign in"
-        className="btn btn-dark block w-full text-center"
+        className="btn bg-lime-500 text-white w-full block  text-center "
       />
     </form>
   );

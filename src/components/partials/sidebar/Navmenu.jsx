@@ -76,28 +76,28 @@ const Navmenu = ({ menus }) => {
 
   return (
     <>
-      <ul>
+      <ul className="mt-5">
         {menus.map((item, i) => (
           <li
             key={i}
-            className={` single-sidebar-menu 
+            className={` single-sidebar-menu text-white 
               ${item.child ? "item-has-children" : ""}
               ${activeSubmenu === i ? "open" : ""}
               ${locationName === item.link ? "menu-item-active" : ""}`}
           >
             {/* single menu with no childred*/}
             {!item.child && !item.isHeadr && (
-              <NavLink className="menu-link" to={item.link}>
-                <span className="menu-icon flex-grow-0">
+              <NavLink className="menu-link text-white" to={item.link}>
+                <span className="menu-icon flex-grow-0 text-white">
                   <Icon icon={item.icon} />
                 </span>
-                <div className="text-box flex-grow">{item.title}</div>
-                {item.badge && <span className="menu-badge">{item.badge}</span>}
+                <div className="text-box flex-grow text-white">{item.title}</div>
+                {item.badge && <span className="menu-badge text-white">{item.badge}</span>}
               </NavLink>
             )}
             {/* only for menulabel */}
             {item.isHeadr && !item.child && (
-              <div className="menulabel">{item.title}</div>
+              <div className="menulabel text-white">{item.title}</div>
             )}
             {/*    !!sub menu parent   */}
             {item.child && (
@@ -109,11 +109,11 @@ const Navmenu = ({ menus }) => {
                 }`}
                 onClick={() => toggleSubmenu(i)}
               >
-                <div className="flex-1 flex items-start">
-                  <span className="menu-icon">
+                <div className="flex-1 flex items-start text-white">
+                  <span className="menu-icon text-white">
                     <Icon icon={item.icon} />
                   </span>
-                  <div className="text-box">{item.title}</div>
+                  <div className="text-box text-white">{item.title}</div>
                 </div>
                 <div className="flex-0">
                   <div

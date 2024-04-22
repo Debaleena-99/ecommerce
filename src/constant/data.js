@@ -1,27 +1,27 @@
 export const menuItems = [
-  {
-    isHeadr: true,
-    title: "menu",
-  },
+  // {
+  //   isHeadr: true,
+  //   title: "menu",
+  // },
 
-  {
-    title: "Dashboard",
-    icon: "heroicons-outline:home",
-    isOpen: true,
-    isHide: true,
-    child: [
-      {
-        childtitle: "Analytics Dashboard",
-        childlink: "dashboard",
-      },
+  // {
+  //   title: "Dashboard",
+  //   icon: "heroicons-outline:home",
+  //   isOpen: true,
+  //   isHide: true,
+  //   child: [
+      // {
+      //   childtitle: "Analytics Dashboard",
+      //   childlink: "dashboard",
+      // },
       // {
       //   childtitle: "Ecommerce Dashboard",
       //   childlink: "ecommerce",
       // },
-      {
-        childtitle: "Project  Dashbaord",
-        childlink: "project",
-      },
+      // {
+      //   childtitle: "Project  Dashbaord",
+      //   childlink: "project",
+      // },
       // {
       //   childtitle: " CRM Dashbaord",
       //   childlink: "crm",
@@ -30,8 +30,8 @@ export const menuItems = [
       //   childtitle: "Banking Dashboard",
       //   childlink: "banking",
       // },
-    ],
-  },
+  //   ],
+  // },
   // {
   //   title: "changelog",
   //   icon: "heroicons:arrow-trending-up",
@@ -41,9 +41,15 @@ export const menuItems = [
   // },
 
   {
-    isHeadr: true,
-    title: "apps",
+    title: "Dashboard",
+    isHide: true,
+    icon: "heroicons-outline:home",
+    link: "Dashboard",
   },
+  // {
+  //   isHeadr: true,
+  //   title: "apps",
+  // },
   {
     title: "Manage Admin",
     isHide: true,
