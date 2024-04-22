@@ -19,11 +19,11 @@ const SidebarLogo = ({ menuHover }) => {
   const [skin] = useSkin();
   return (
     <div
-      className={` logo-segment flex justify-between items-center bg-white dark:bg-slate-800 z-[9] py-6  px-4 
+      className={` logo-segment flex justify-between items-center bg-cyan-700 dark:bg-slate-800 z-[9] py-6  px-4 
       ${menuHover ? "logo-hovered" : ""}
       ${
         skin === "bordered"
-          ? " border-b border-r-0 border-slate-200 dark:border-slate-700"
+          ? " border-b border-r-0 dark:border-slate-700"
           : " border-none"
       }
       
@@ -39,13 +39,13 @@ const SidebarLogo = ({ menuHover }) => {
             )}
           </div>
 
-          {(!collapsed || menuHover) && (
+          {/* {(!collapsed || menuHover) && (
             <div>
               <h1 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
                 DashCode
               </h1>
             </div>
-          )}
+          )} */}
         </div>
       </Link>
 

@@ -42,6 +42,42 @@ const LoginForm = () => {
   };
 
   return (
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 mt-5 mb-5">
+      <Textinput
+        name="username"
+        placeholder="Username"
+        // label="Username"
+        defaultValue="kminchelle"
+        type="text"
+        className="h-[48px] rounded-full"
+        register={register} // Pass register function
+      />
+      <Textinput
+        name="password"
+        placeholder="Password"
+        // label="Password"
+        type="password"
+        defaultValue="0lelplR"
+        className="h-[48px] rounded-full"
+        register={register} // Pass register function
+      />
+      <div className="flex justify-between">
+        <label className="flex items-center text-white">
+          <input
+            type="checkbox"
+            checked={checked}
+            onChange={() => setChecked(!checked)}
+            className="mr-2 text-white"
+          />
+          Keep me signed in
+        </label>
+        <Link
+          to="/forgot-password"
+          className="text-sm text-slate-800 dark:text-slate-400 leading-6 font-medium"
+        >
+          Forgot Password?
+        </Link>
+      </div>
     <>
       <Formik
         initialValues={initialValues}
@@ -88,6 +124,12 @@ const LoginForm = () => {
             </Link>
           </div>
 
+      <Button
+        type="submit"
+        text="Sign in"
+        className="btn bg-lime-500 text-white w-full block  text-center "
+      />
+    </form>
           <Button
             type="submit"
             text="Sign in"

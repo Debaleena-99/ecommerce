@@ -33,7 +33,7 @@ const Sidebar = () => {
   return (
     <div className={isSemiDark ? "dark" : ""}>
       <div
-        className={`sidebar-wrapper bg-white dark:bg-slate-800     ${
+        className={`sidebar-wrapper bg-cyan-700 dark:bg-slate-800     ${
           collapsed ? "w-[72px] close_sidebar" : "w-[248px]"
         }
       ${menuHover ? "sidebar-hovered" : ""}
