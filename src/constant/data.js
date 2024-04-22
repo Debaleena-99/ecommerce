@@ -14,31 +14,14 @@ export const menuItems = [
         childtitle: "Analytics Dashboard",
         childlink: "dashboard",
       },
-      // {
-      //   childtitle: "Ecommerce Dashboard",
-      //   childlink: "ecommerce",
-      // },
+      
       {
         childtitle: "Project  Dashbaord",
         childlink: "project",
       },
-      // {
-      //   childtitle: " CRM Dashbaord",
-      //   childlink: "crm",
-      // },
-      // {
-      //   childtitle: "Banking Dashboard",
-      //   childlink: "banking",
-      // },
+      
     ],
   },
-  // {
-  //   title: "changelog",
-  //   icon: "heroicons:arrow-trending-up",
-  //   link: "changelog",
-  //   isHide: false,
-  //   badge: "1.0.0",
-  // },
 
   {
     isHeadr: true,
@@ -68,66 +51,6 @@ export const menuItems = [
     icon: "heroicons-outline:clipboard-check",
     link: "crud",
   },
-  // {
-  //   title: "Table",
-  //   isHide: true,
-  //   icon: "heroicons-outline:chat",
-  //   link: "react-table",
-  // },
-
-  // {
-  //   title: "Table",
-  //   icon: "heroicons-outline:table",
-  //   link: "#",
-  //   child: [
-  //     {
-  //       childtitle: "Basic Table",
-  //       childlink: "table-basic",
-  //     },
-  //     {
-  //       childtitle: "React Table",
-  //       childlink: "react-table",
-  //     },
-  //   ],
-  // },
-
-  // {
-  //   title: "Extra",
-  //   icon: "heroicons-outline:template",
-
-  //   child: [
-  //     {
-  //       childtitle: "Apex chart",
-  //       childlink: "appex-chart",
-  //       childicon: "heroicons-outline:chart-bar",
-  //     },
-  //     {
-  //       childtitle: "Chart js",
-  //       childlink: "chartjs",
-  //       childicon: "heroicons-outline:chart-bar",
-  //     },
-  //     {
-  //       childtitle: "Map",
-  //       childlink: "map",
-  //       childicon: "heroicons-outline:map",
-  //     },
-  //   ],
-  // },
-  // {
-  //   title: "Chat",
-  //   isHide: true,
-  //   icon: "heroicons-outline:chat",
-  //   link: "chat",
-  // },
-
-  // {
-  //   title: "Email",
-  //   isHide: true,
-  //   icon: "heroicons-outline:mail",
-  //   link: "email",
-  // },
-
-
 ];
 
 export const topMenu = [
