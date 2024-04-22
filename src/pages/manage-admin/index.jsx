@@ -188,27 +188,27 @@ const Index = ({ title = "Admin Details" }) => {
 
     useGlobalFilter,
     useSortBy,
-    usePagination,
-    useRowSelect,
+    usePagination
+    // useRowSelect,
 
-    (hooks) => {
-      hooks.visibleColumns.push((columns) => [
-        {
-          id: "selection",
-          Header: ({ getToggleAllRowsSelectedProps }) => (
-            <div>
-              <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
-            </div>
-          ),
-          Cell: ({ row }) => (
-            <div>
-              <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
-            </div>
-          ),
-        },
-        ...columns,
-      ]);
-    }
+    // (hooks) => {
+    //   hooks.visibleColumns.push((columns) => [
+    //     {
+    //       id: "selection",
+    //       Header: ({ getToggleAllRowsSelectedProps }) => (
+    //         <div>
+    //           <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
+    //         </div>
+    //       ),
+    //       Cell: ({ row }) => (
+    //         <div>
+    //           <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
+    //         </div>
+    //       ),
+    //     },
+    //     ...columns,
+    //   ]);
+    // }
   );
   const {
     getTableProps,
