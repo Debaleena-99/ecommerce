@@ -9,6 +9,9 @@ import useSkin from "@/hooks/useSkin";
 import svgRabitImage from "@/assets/images/svg/rabit.svg";
 
 const Sidebar = () => {
+  console.log("Menu names", menuItems);
+  // const role = "Super Admin"; // Assuming role is fetched or determined somehow
+
   const scrollableNodeRef = useRef();
   const [scroll, setScroll] = useState(false);
 
@@ -21,7 +24,12 @@ const Sidebar = () => {
       }
     };
     scrollableNodeRef.current.addEventListener("scroll", handleScroll);
-  }, [scrollableNodeRef]);
+
+    return () => {
+      // Clean up the event listener on unmount
+      scrollableNodeRef.current.removeEventListener("scroll", handleScroll);
+    };
+  }, []); // Empty dependency array means this effect runs only once after initial render
 
   const [collapsed, setMenuCollapsed] = useSidebar();
   const [menuHover, setMenuHover] = useState(false);
@@ -30,6 +38,18 @@ const Sidebar = () => {
   const [isSemiDark] = useSemiDark();
   // skin
   const [skin] = useSkin();
+
+  // Filter menu items based on role
+  // const filteredMenuItems = menuItems.filter((item) => {
+  //   if (role === "Super Admin") {
+  //     // Only return items with Dashboard title and isHide set to false
+  //     return item.title === "Dashboard";
+  //   } else {
+  //     // Return all items for other roles
+  //     return true;
+  //   }
+  // });
+
   return (
     <div className={isSemiDark ? "dark" : ""}>
       <div
