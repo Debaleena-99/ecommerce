@@ -127,7 +127,8 @@
 .menu-item-active {
   .menu-link {
     @apply bg-lime-500 dark:bg-slate-700;
-    border-radius:50px;
+    border-radius: 100px 0px 100px 0px;
+
     .icon-box,
     .menu-icon,
     .text-box {

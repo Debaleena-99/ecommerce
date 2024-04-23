@@ -77,13 +77,13 @@ const Profile = () => {
         navigate("/profile");
       },
     },
-    {
-      label: "Settings",
-      icon: "heroicons-outline:cog",
-      action: () => {
-        navigate("/settings");
-      },
-    },
+    // {
+    //   label: "Settings",
+    //   icon: "heroicons-outline:cog",
+    //   action: () => {
+    //     navigate("/settings");
+    //   },
+    // },
     {
       label: "Logout",
       icon: "heroicons-outline:login",

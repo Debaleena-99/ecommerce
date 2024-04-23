@@ -48,7 +48,7 @@ const LoginForm = () => {
         validationSchema={validationSchema}
         onSubmit={onSubmit}
       >
-        <Form className="space-y-4 mt-5 mb-5">
+        <Form className="space-y-4 mt-5 justify-items-center">
           <div className="flex flex-col space-y-1">
             {/* <label htmlFor="username">Username</label> */}
             <Field
@@ -73,28 +73,32 @@ const LoginForm = () => {
             <ErrorMessage name="password" component="div" className="text-red-500" />
           </div>
 
+
+          <div className="center-center">
+          <center>
+          <Button
+            type="submit"
+            text="Log in"
+            className="btn text-white center-center rounded-md px-20 text-center bg-lime-500"
+          /></center>
+          </div>
+
           <div className="flex justify-between">
             <label className="flex items-center text-white">
               <Field
                 type="checkbox"
                 name="keepSignedIn"
-                className="text-white"
+                className="text-white me-2"
               />
-              Keep me signed in
+               Keep me signed in
             </label>
-            <Link
+            {/* <Link
               to="/forgot-password"
               className="text-sm text-white dark:text-slate-400 leading-6 font-medium"
             >
               Forgot Password?
-            </Link>
+            </Link> */}
           </div>
-
-          <Button
-            type="submit"
-            text="Sign in"
-            className="btn text-white block w-full text-center bg-lime-500"
-          />
         </Form>
       </Formik>
       <ToastContainer />

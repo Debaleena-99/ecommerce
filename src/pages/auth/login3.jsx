@@ -6,17 +6,17 @@ import { ToastContainer } from "react-toastify";
 import useDarkMode from "@/hooks/useDarkMode";
 // image import
 // import bgImage from "@/assets/images/all-img/page-bg.png";
-import bgImage from "@/assets/images/all-img/24093.jpg";
+import bgImage from "@/assets/images/all-img/Background.png";
 import LogoWhite from "@/assets/images/logo/logo-white.svg";
-import Logo from "@/assets/images/logo/logo.svg";
+import Logo from "@/assets/images/all-img/logo1.png";
 const login3 = () => {
   const [isDark] = useDarkMode();
   return (
     <div
       className="loginwrapper bg-cover bg-no-repeat bg-center"
-      // style={{
-      //   backgroundImage: `url(${bgImage})`,
-      // }}
+      style={{
+        backgroundImage: `url(${bgImage})`,
+      }}
     >
       <div className="lg-inner-column ">
         {/* <div className="left-columns lg:w-1/2 lg:block hidden">
@@ -26,7 +26,10 @@ const login3 = () => {
             </Link>
           </div>
         </div> */}
-        <div className=" w-full flex flex-col items-center justify-center">
+        <div className="logo-1 mt-5">
+          <img src={Logo} alt="" className="w-50"/>
+        </div>
+        <div className=" w-full flex flex-col items-center">
           <div className="auth-box-3">
             <div className="mobile-logo text-center mb-6 lg:hidden block">
               <Link to="/">

@@ -10,6 +10,7 @@ import RecentActivity from "@/components/partials/widget/recent-activity";
 import MostSales from "../../components/partials/widget/most-sales";
 import RadarChart from "../../components/partials/widget/chart/radar-chart";
 import HomeBredCurbs from "./HomeBredCurbs";
+import Pie from "../chart/appex-chart/Pie";
 
 const Dashboard = () => {
   const [filterMap, setFilterMap] = useState("usa");
@@ -29,16 +30,16 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="grid grid-cols-12 gap-5">
-        <div className="lg:col-span-8 col-span-12">
+        <div className="lg:col-span-7 col-span-12">
           <Card>
             <div className="legend-ring">
               <RevenueBarChart />
             </div>
           </Card>
         </div>
-        <div className="lg:col-span-4 col-span-12">
+        <div className="lg:col-span-5 col-span-12">
           <Card title="Overview" headerslot={<SelectMonth />}>
-            <RadialsChart />
+            <Pie />
           </Card>
         </div>
         <div className="lg:col-span-8 col-span-12">
@@ -51,7 +52,7 @@ const Dashboard = () => {
             <RecentActivity />
           </Card>
         </div>
-        <div className="lg:col-span-8 col-span-12">
+        {/* <div className="lg:col-span-8 col-span-12">
           <Card
             title="Most Sales"
             headerslot={
@@ -121,7 +122,7 @@ const Dashboard = () => {
               </div>
             </div>
           </Card>
-        </div>
+        </div> */}
       </div>
     </div>
   );
