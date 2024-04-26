@@ -13,9 +13,11 @@ import {
 } from "react-table";
 import GlobalFilter from "../table/react-tables/GlobalFilter";
 import DeleteAdmin from "./DeleteAdmin";
+import AddNewModal from "./AddNewModal";
 
 const COLUMNS = [
   {
+
     Header: "Id",
     accessor: "id",
     Cell: (row) => {
@@ -72,16 +74,14 @@ const COLUMNS = [
       return (
         <span className="block w-full">
           <span
-            className={` inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 ${
-              row?.cell?.value === "Active"
+            className={` inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 ${row?.cell?.value === "Active"
                 ? "text-success-600 bg-success-500"
                 : ""
-            } 
-            ${
-              row?.cell?.value === "Inactive"
+              } 
+            ${row?.cell?.value === "Inactive"
                 ? "text-danger-600 bg-danger-500"
                 : ""
-            }
+              }
           `}
           >
             {row?.cell?.value}
@@ -230,9 +230,15 @@ const Index = ({ title = "Admin Details" }) => {
   } = tableInstance;
 
   const { globalFilter, pageIndex, pageSize } = state;
+
+  // const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+
   return (
     <>
+      <button class="flex justify-items-end btn mb-2 transition duration-700 bg-sky-900 hover:bg-cyan-700 text-white ease-in-out ...">
+        <Icon icon="heroicons:plus" className="w-7 h-6" />Add  New</button>
       <Card>
+
         <div className="md:flex justify-between items-center mb-6">
           <h4 className="card-title">{title}</h4>
           <div>
@@ -316,9 +322,8 @@ const Index = ({ title = "Admin Details" }) => {
           <ul className="flex items-center  space-x-3  rtl:space-x-reverse">
             <li className="text-xl leading-4 text-slate-900 dark:text-white rtl:rotate-180">
               <button
-                className={` ${
-                  !canPreviousPage ? "opacity-50 cursor-not-allowed" : ""
-                }`}
+                className={` ${!canPreviousPage ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
                 onClick={() => gotoPage(0)}
                 disabled={!canPreviousPage}
               >
@@ -327,9 +332,8 @@ const Index = ({ title = "Admin Details" }) => {
             </li>
             <li className="text-sm leading-4 text-slate-900 dark:text-white rtl:rotate-180">
               <button
-                className={` ${
-                  !canPreviousPage ? "opacity-50 cursor-not-allowed" : ""
-                }`}
+                className={` ${!canPreviousPage ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
                 onClick={() => previousPage()}
                 disabled={!canPreviousPage}
               >
@@ -341,11 +345,10 @@ const Index = ({ title = "Admin Details" }) => {
                 <button
                   href="#"
                   aria-current="page"
-                  className={` ${
-                    pageIdx === pageIndex
+                  className={` ${pageIdx === pageIndex
                       ? "bg-slate-900 dark:bg-slate-600  dark:text-slate-200 text-white font-medium "
                       : "bg-slate-100 dark:bg-slate-700 dark:text-slate-400 text-slate-900  font-normal  "
-                  }    text-sm rounded leading-[16px] flex h-6 w-6 items-center justify-center transition-all duration-150`}
+                    }    text-sm rounded leading-[16px] flex h-6 w-6 items-center justify-center transition-all duration-150`}
                   onClick={() => gotoPage(pageIdx)}
                 >
                   {page + 1}
@@ -354,9 +357,8 @@ const Index = ({ title = "Admin Details" }) => {
             ))}
             <li className="text-sm leading-4 text-slate-900 dark:text-white rtl:rotate-180">
               <button
-                className={` ${
-                  !canNextPage ? "opacity-50 cursor-not-allowed" : ""
-                }`}
+                className={` ${!canNextPage ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
                 onClick={() => nextPage()}
                 disabled={!canNextPage}
               >
@@ -367,9 +369,8 @@ const Index = ({ title = "Admin Details" }) => {
               <button
                 onClick={() => gotoPage(pageCount - 1)}
                 disabled={!canNextPage}
-                className={` ${
-                  !canNextPage ? "opacity-50 cursor-not-allowed" : ""
-                }`}
+                className={` ${!canNextPage ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
               >
                 <Icon icon="heroicons:chevron-double-right-solid" />
               </button>
@@ -378,6 +379,9 @@ const Index = ({ title = "Admin Details" }) => {
         </div>
         {/*end*/}
       </Card>
+      {/* <Modal isOpen={isAddModalOpen} onClose={() => setIsAddModalOpen(false)} title="Add New Patient">
+        <AddNewModal />
+      </Modal> */}
     </>
   );
 };
