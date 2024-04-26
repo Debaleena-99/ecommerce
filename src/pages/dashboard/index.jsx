@@ -11,38 +11,63 @@ import MostSales from "../../components/partials/widget/most-sales";
 import RadarChart from "../../components/partials/widget/chart/radar-chart";
 import HomeBredCurbs from "./HomeBredCurbs";
 import Pie from "../chart/appex-chart/Pie";
+import CalendarView from "@/components/partials/widget/CalendarView";
+import MessageList from "@/components/partials/widget/message-list";
+import Donut from "../chart/appex-chart/Donut";
+import DonutChart from "@/components/partials/widget/chart/donut-chart";
+import DonutChart2 from "@/components/partials/widget/chart/dount-chart2";
+
 
 const Dashboard = () => {
-  const [filterMap, setFilterMap] = useState("usa");
+  // const [filterMap, setFilterMap] = useState("usa");
   return (
     <div>
       <HomeBredCurbs title="Dashboard" />
-      <div className="grid grid-cols-12 gap-5 mb-5">
+      {/* <div className="grid grid-cols-12 gap-5 mb-5"> */}
         {/* <div className="2xl:col-span-3 lg:col-span-4 col-span-12">
           <ImageBlock1 />
         </div> */}
-        <div className="2xl:col-span-12 lg:col-span-12 col-span-12">
+        {/* <div className="2xl:col-span-12 lg:col-span-12 col-span-12">
           <Card bodyClass="p-4">
             <div className="grid md:grid-cols-3 col-span-1 gap-4">
               <GroupChart1 />
             </div>
           </Card>
-        </div>
-      </div>
+        </div> */}
+      {/* </div> */}
       <div className="grid grid-cols-12 gap-5">
         <div className="lg:col-span-7 col-span-12">
           <Card>
-            <div className="legend-ring">
+            <div className="legend-ring mb-10">
               <RevenueBarChart />
             </div>
           </Card>
         </div>
-        <div className="lg:col-span-5 col-span-12">
-          <Card title="Overview" headerslot={<SelectMonth />}>
+        <div className="lg:col-span-5 col-span-12 ">
+          <Card title="Messages" headerslot={<SelectMonth />}>
+            <MessageList />
+          </Card>
+        </div>
+        <div className="lg:col-span-4 col-span-12">
+          <Card headerslot={<SelectMonth />}>
             <Pie />
           </Card>
         </div>
-        <div className="lg:col-span-8 col-span-12">
+        <div className="lg:col-span-4 col-span-12">
+          <Card headerslot={<SelectMonth />}>
+            <div className="mb-4">
+              <Donut />
+            </div>
+          </Card>
+        </div>
+        <div className="lg:col-span-4 col-span-12 space-y-5">
+          <Card>
+            <div className="mb-20">
+              <CalendarView />
+            </div>
+          </Card>
+        </div>
+        {/* <div className="lg:col-span-8 col-span-12">
           <Card title="All Company" headerslot={<SelectMonth />} noborder>
             <CompanyTable />
           </Card>
@@ -51,7 +76,7 @@ const Dashboard = () => {
           <Card title="Recent Activity" headerslot={<SelectMonth />}>
             <RecentActivity />
           </Card>
-        </div>
+        </div> */}
         {/* <div className="lg:col-span-8 col-span-12">
           <Card
             title="Most Sales"
@@ -123,6 +148,7 @@ const Dashboard = () => {
             </div>
           </Card>
         </div> */}
+
       </div>
     </div>
   );

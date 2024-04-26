@@ -1,7 +1,10 @@
 import React from "react";
 
 
-const DeleteAdmin = ({ title, onConfirm, onCancel, children }) => {
+const DeleteAdmin = ({ title, onConfirm, onCancel, children }) => { 
+
+  
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center overflow-auto bg-black bg-opacity-50">
       <div className="relative bg-white w-96 mx-auto p-6 rounded-lg shadow-lg">

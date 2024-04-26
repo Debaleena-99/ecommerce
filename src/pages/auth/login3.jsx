@@ -31,13 +31,13 @@ const login3 = () => {
         </div>
         <div className=" w-full flex flex-col items-center">
           <div className="auth-box-3">
-            <div className="mobile-logo text-center mb-6 lg:hidden block">
+            <div className="text-center mb-6 lg:hidden block">
               <Link to="/">
-                <img
+                {/* <img
                   src={isDark ? LogoWhite : Logo}
                   alt=""
                   className="mx-auto"
-                />
+                /> */}
               </Link>
             </div>
             {/* <div className="text-center 2xl:mb-10 mb-5">
