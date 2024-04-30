@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import Modal from "@/components/ui/Modal"; // Import your modal component here
+import Modal from "@/components/ui/Modal";
 import Card from "@/components/ui/Card";
 import Icon from "@/components/ui/Icon";
 import Tooltip from "@/components/ui/Tooltip";
@@ -13,7 +13,8 @@ import {
 } from "react-table";
 import GlobalFilter from "../table/react-tables/GlobalFilter";
 import DeleteAdmin from "./DeleteAdmin";
-import AddNewModal from "./AddNewModal";
+import Button from "@/components/ui/Button";
+import AddProjectModal from "./AddProjectModal";
 
 const COLUMNS = [
   {
@@ -75,8 +76,8 @@ const COLUMNS = [
         <span className="block w-full">
           <span
             className={` inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 ${row?.cell?.value === "Active"
-                ? "text-success-600 bg-success-500"
-                : ""
+              ? "text-success-600 bg-success-500"
+              : ""
               } 
             ${row?.cell?.value === "Inactive"
                 ? "text-danger-600 bg-danger-500"
@@ -95,22 +96,12 @@ const COLUMNS = [
     accessor: "action",
     Cell: ({ row }) => {
       const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-
-      // Handle delete button click
       const handleDeleteClick = () => {
-        // alert('hii');
         setIsDeleteModalOpen(true);
       };
-
-      // Handle confirm delete in modal
       const handleConfirmDelete = () => {
-        // Perform deletion logic here
-
-        // Close the modal
         setIsDeleteModalOpen(false);
       };
-
-      // Handle cancel delete in modal
       const handleCancelDelete = () => {
         setIsDeleteModalOpen(false);
       };
@@ -179,7 +170,20 @@ const IndeterminateCheckbox = React.forwardRef(
 const Index = ({ title = "Admin Details" }) => {
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => advancedTable, []);
+  const [isAddProjectModalOpen, setIsAddProjectModalOpen] = useState(false);
 
+  const openAddProjectModal = () => {
+    setIsAddProjectModalOpen(true);
+  };
+
+  const closeAddProjectModal = () => {
+    setIsAddProjectModalOpen(false);
+  };
+
+  const handleAddProjectSubmit = (formData) => {
+    // Handle submission logic here
+    console.log("Submitted data:", formData);
+  };
   const tableInstance = useTable(
     {
       columns,
@@ -189,26 +193,7 @@ const Index = ({ title = "Admin Details" }) => {
     useGlobalFilter,
     useSortBy,
     usePagination
-    // useRowSelect,
 
-    // (hooks) => {
-    //   hooks.visibleColumns.push((columns) => [
-    //     {
-    //       id: "selection",
-    //       Header: ({ getToggleAllRowsSelectedProps }) => (
-    //         <div>
-    //           <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
-    //         </div>
-    //       ),
-    //       Cell: ({ row }) => (
-    //         <div>
-    //           <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
-    //         </div>
-    //       ),
-    //     },
-    //     ...columns,
-    //   ]);
-    // }
   );
   const {
     getTableProps,
@@ -231,12 +216,26 @@ const Index = ({ title = "Admin Details" }) => {
 
   const { globalFilter, pageIndex, pageSize } = state;
 
-  // const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-
   return (
     <>
-      <button class="flex justify-items-end btn mb-2 transition duration-700 bg-sky-900 hover:bg-cyan-700 text-white ease-in-out ...">
-        <Icon icon="heroicons:plus" className="w-7 h-6" />Add  New</button>
+      <div className="flex flex-wrap justify-between items-center mb-4">
+        <h4 className="font-medium lg:text-2xl text-xl capitalize text-slate-900 inline-block ltr:pr-4 rtl:pl-4">
+          ADMINS
+        </h4>
+        <div
+          className=" md:flex md:space-x-4 md:justify-end items-center rtl:space-x-reverse"
+        >
+
+          <Button
+            icon="heroicons-outline:plus"
+            text="Add Project"
+            className="btn-dark bg-sky-900 dark:bg-slate-800  h-min text-sm font-normal"
+            iconClass=" text-lg"
+            onClick={openAddProjectModal}
+          />
+        </div>
+      </div>
+
       <Card>
 
         <div className="md:flex justify-between items-center mb-6">
@@ -346,8 +345,8 @@ const Index = ({ title = "Admin Details" }) => {
                   href="#"
                   aria-current="page"
                   className={` ${pageIdx === pageIndex
-                      ? "bg-slate-900 dark:bg-slate-600  dark:text-slate-200 text-white font-medium "
-                      : "bg-slate-100 dark:bg-slate-700 dark:text-slate-400 text-slate-900  font-normal  "
+                    ? "bg-slate-900 dark:bg-slate-600  dark:text-slate-200 text-white font-medium "
+                    : "bg-slate-100 dark:bg-slate-700 dark:text-slate-400 text-slate-900  font-normal  "
                     }    text-sm rounded leading-[16px] flex h-6 w-6 items-center justify-center transition-all duration-150`}
                   onClick={() => gotoPage(pageIdx)}
                 >
@@ -379,9 +378,11 @@ const Index = ({ title = "Admin Details" }) => {
         </div>
         {/*end*/}
       </Card>
-      {/* <Modal isOpen={isAddModalOpen} onClose={() => setIsAddModalOpen(false)} title="Add New Patient">
-        <AddNewModal />
-      </Modal> */}
+      <AddProjectModal
+        isOpen={isAddProjectModalOpen}
+        onClose={closeAddProjectModal}
+        onSubmit={handleAddProjectSubmit}
+      />
     </>
   );
 };
