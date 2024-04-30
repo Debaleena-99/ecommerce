@@ -54,19 +54,19 @@ export const menuItems = [
     title: "Manage Admin",
     isHide: true,
     icon: "heroicons-outline:chat",
-    link: "manageadmin",
+    link: "ManageAdmin",
   },
   {
-    title: "Manage Roles",
+    title: "Manage Patient",
     isHide: true,
     icon: "heroicons-outline:chat",
-    link: "manageroles",
+    link: "ManagePatient",
   },
   {
     title: "Manage Tests",
     isHide: true,
     icon: "heroicons-outline:clipboard-check",
-    link: "managetests",
+    link: "ManageTests",
   },
   {
     title: "CRUD",

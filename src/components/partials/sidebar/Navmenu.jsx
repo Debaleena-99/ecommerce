@@ -64,7 +64,7 @@ const Navmenu = ({ menus }) => {
         });
       }
     });
-    document.title = `Dashcode  | ${locationName}`;
+    document.title = `LIMS  | ${locationName}`;
 
     setActiveSubmenu(submenuIndex);
     setMultiMenu(multiMenuIndex);
@@ -83,7 +83,8 @@ const Navmenu = ({ menus }) => {
             className={` single-sidebar-menu text-white 
               ${item.child ? "item-has-children" : ""}
               ${activeSubmenu === i ? "open" : ""}
-              ${locationName === item.link ? "menu-item-active" : ""}`}
+              ${locationName === item.link ? "menu-item-active" : ""}
+              `}
           >
             {/* single menu with no childred*/}
             {!item.child && !item.isHeadr && (

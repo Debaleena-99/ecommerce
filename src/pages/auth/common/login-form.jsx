@@ -29,7 +29,8 @@ const LoginForm = () => {
         if (response.data.token) {
           const token = response.data.token;
           localStorage.setItem('token', token);
-          navigate("/dashboard");
+          // setActiveMenuItem('dashboard'); // Set active menu item
+          navigate("/Dashboard");
         } else {
           toast.error("Login failed: " + response.data.error);
         }
@@ -56,7 +57,7 @@ const LoginForm = () => {
               name="username"
               placeholder="Username"
               type="text"
-              className="h-[48px] border rounded-md px-3"
+              className="h-[48px] border rounded-full px-3"
             />
             <ErrorMessage name="username" component="div" className="text-red-500" />
           </div>
@@ -68,7 +69,7 @@ const LoginForm = () => {
               name="password"
               placeholder="Password"
               type="password"
-              className="h-[48px] border rounded-md px-3"
+              className="h-[48px] border rounded-full px-3"
             />
             <ErrorMessage name="password" component="div" className="text-red-500" />
           </div>

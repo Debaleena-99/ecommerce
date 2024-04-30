@@ -3,14 +3,15 @@ import { Routes, Route, Navigate } from "react-router-dom";
 
 // home pages  & dashboard
 //import Dashboard from "./pages/dashboard";
-const Dashboard = lazy(() => import("./pages/dashboard"));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
 const Ecommerce = lazy(() => import("./pages/dashboard/ecommerce"));
 const CrmPage = lazy(() => import("./pages/dashboard/crm"));
 const ProjectPage = lazy(() => import("./pages/dashboard/project"));
 const BankingPage = lazy(() => import("./pages/dashboard/banking"));
 
 const ManageAdmin = lazy(() => import("./pages/manage-admin"));
-const ManageRoles = lazy(() => import("./pages/manage-roles"));
+const ManagePatient = lazy(() => import("./pages/manage-patient"));
+const Addnewpatient = lazy(() => import("./pages/manage-patient/Addnewpatient"));
 const ManageTests = lazy(() => import("./pages/manage-tests"));
 const Crud = lazy(() => import("./Crud"));
 
@@ -159,9 +160,10 @@ function App() {
           <Route path="project" element={<ProjectPage />} />
           <Route path="banking" element={<BankingPage />} />
 
-          <Route path="manageadmin" element={<ManageAdmin />} />
-          <Route path="manageroles" element={<ManageRoles />} />
-          <Route path="managetests" element={<ManageTests />} />
+          <Route path="ManageAdmin" element={<ManageAdmin />} />
+          <Route path="ManagePatient" element={<ManagePatient />} />
+          <Route path="ManagePatient/Addnewpatient" element={<Addnewpatient />} />
+          <Route path="ManageTests" element={<ManageTests />} />
 
 
           {/* App pages */}

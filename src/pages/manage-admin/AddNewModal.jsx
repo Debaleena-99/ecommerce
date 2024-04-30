@@ -1,81 +1,73 @@
-import React, { useState } from 'react';
-import Modal from '@/components/ui/Modal';
+// AddPatient.jsx
 
-const AddNewModal = ({ isOpen, onClose, onSubmit }) => {
-  const [formData, setFormData] = useState({
-    patientName: '',
-    patientAge: '',
-    branchID: '',
-    patientGender: '',
-    patientReferringDoctor: '',
-    patientUploadedDoc: '',
-    status: ''
-  });
+import React, { useState } from "react";
+import axios from "axios"; // Import axios for making API requests
+import { useHistory } from "react-router-dom";
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-  };
+const AddPatient = () => {
+  const history = useHistory();
 
+  // Define state variables for form fields
+  const [patientName, setPatientName] = useState("");
+  const [patientAge, setPatientAge] = useState("");
+  const [branchID, setBranchID] = useState(""); // Assuming you have a branch selection field
+  const [patientGender, setPatientGender] = useState("");
+  const [patientReferringDoctor, setPatientReferringDoctor] = useState("");
+
+  // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Make POST request to API endpoint with formData
-      await onSubmit(formData);
-      onClose(); // Close the modal upon successful submission
+      // Make a POST request to your backend API to add the patient
+      const response = await axios.post("your-api-endpoint-here", {
+        patientName,
+        patientAge,
+        branchID,
+        patientGender,
+        patientReferringDoctor,
+        // Add other fields here based on your table schema
+      });
+
+      // Handle success
+      console.log("Patient added successfully:", response.data);
+
+      // Redirect to the patient list page after adding the patient
+      history.push("/patient-list");
     } catch (error) {
-      console.error('Error submitting form:', error);
+      // Handle error
+      console.error("Error adding patient:", error);
     }
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Add New Patient">
+    <div>
+      <h2>Add New Patient</h2>
       <form onSubmit={handleSubmit}>
-        <label>
-          Patient Name:
-          <input type="text" name="patientName" value={formData.patientName} onChange={handleInputChange} />
-        </label>
-        <br />
-        <label>
-          Patient Age:
-          <input type="number" name="patientAge" value={formData.patientAge} onChange={handleInputChange} />
-        </label>
-        <br />
-        <label>
-          Branch ID:
-          <input type="number" name="branchID" value={formData.branchID} onChange={handleInputChange} />
-        </label>
-        <br />
-        <label>
-          Patient Gender:
-          <input type="text" name="patientGender" value={formData.patientGender} onChange={handleInputChange} />
-        </label>
-        <br />
-        <label>
-          Referring Doctor:
-          <input type="text" name="patientReferringDoctor" value={formData.patientReferringDoctor} onChange={handleInputChange} />
-        </label>
-        <br />
-        <label>
-          Patient Uploaded Doc:
-          <input type="text" name="patientUploadedDoc" value={formData.patientUploadedDoc} onChange={handleInputChange} />
-        </label>
-        <br />
-        <label>
-          Status:
-          <select name="status" value={formData.status} onChange={handleInputChange}>
-            <option value="Active">Active</option>
-            <option value="Inactive">Inactive</option>
-          </select>
-        </label>
-        <br />
-        <button type="submit">Submit</button>
+        <div>
+          <label htmlFor="patientName">Patient Name:</label>
+          <input
+            type="text"
+            id="patientName"
+            value={patientName}
+            onChange={(e) => setPatientName(e.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="patientAge">Patient Age:</label>
+          <input
+            type="number"
+            id="patientAge"
+            value={patientAge}
+            onChange={(e) => setPatientAge(e.target.value)}
+          />
+        </div>
+        {/* Add input fields for other columns */}
+        <div>
+          <button type="submit">Submit</button>
+        </div>
       </form>
-    </Modal>
+    </div>
   );
 };
 
-export default AddNewModal;
+export default AddPatient;
