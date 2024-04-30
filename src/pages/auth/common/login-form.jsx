@@ -30,7 +30,7 @@ const LoginForm = () => {
           const token = response.data.token;
           localStorage.setItem('token', token);
           // setActiveMenuItem('dashboard'); // Set active menu item
-          navigate("/dashboard");
+          navigate("/Dashboard");
         } else {
           toast.error("Login failed: " + response.data.error);
         }

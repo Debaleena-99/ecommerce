@@ -133,7 +133,7 @@ const Layout = () => {
                   duration: 0.5,
                 }}
               >
-                <Breadcrumbs />
+                {/* <Breadcrumbs /> */}
                 {<Outlet />}
               </motion.div>
             </Suspense>
