@@ -13,7 +13,7 @@ import {
 } from "react-table";
 import GlobalFilter from "../table/react-tables/GlobalFilter";
 import DeleteAdmin from "./DeleteAdmin";
-import AddNewModal from "./AddNewModal";
+import Button from "@/components/ui/Button";
 
 const COLUMNS = [
   {
@@ -231,12 +231,61 @@ const Index = ({ title = "Admin Details" }) => {
 
   const { globalFilter, pageIndex, pageSize } = state;
 
-  // const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [isNewModalOpen, setIsNewModalOpen] = useState(false);
+
+      // // Handle delete button click
+      // const handleDeleteClick = () => {
+      //   // alert('hii');
+      //   setIsAddNewModalOpen(true);
+      // };
+
+      // // Handle confirm delete in modal
+      // const handleConfirmDelete = () => {
+      //   // Perform deletion logic here
+
+      //   // Close the modal
+      //   setIsAddNewModalOpen(false);
+      // };
+
+      // // Handle cancel delete in modal
+      // const handleCancelDelete = () => {
+      //   setIsAddNewModalOpen(false);
+      // };
+      
+      
+
+
+      // const handleNewButtonClick = () => {
+      //   setIsNewModalOpen(true);
+      // };
+    
+      // // Handle close modal
+      // const handleCloseModal = () => {
+      //   setIsNewModalOpen(false);
+      // };
 
   return (
     <>
-      <button class="flex justify-items-end btn mb-2 transition duration-700 bg-sky-900 hover:bg-cyan-700 text-white ease-in-out ...">
-        <Icon icon="heroicons:plus" className="w-7 h-6" />Add  New</button>
+      {/* <button class="flex justify-items-end btn mb-2 transition duration-700 bg-sky-900 hover:bg-cyan-700 text-white ease-in-out ..." type="button">
+        <Icon icon="heroicons:plus" className="w-7 h-6" />Add  New</button> */}
+      {/* <div className="flex flex-wrap justify-between items-center mb-4">
+        <h4 className="font-medium lg:text-2xl text-xl capitalize text-slate-900 inline-block ltr:pr-4 rtl:pl-4">
+          ADMIN
+        </h4>
+        <div
+          className=" md:flex md:space-x-4 md:justify-end items-center rtl:space-x-reverse"
+        >
+          
+          <Button
+            icon="heroicons-outline:plus"
+            text="Add New Admin"
+            className="btn-dark bg-sky-900 dark:bg-slate-800  h-min text-sm font-normal"
+            iconClass=" text-lg" onClick={handleNewButtonClick}
+            
+          />
+        </div>
+      </div> */}
+      
       <Card>
 
         <div className="md:flex justify-between items-center mb-6">
@@ -379,9 +428,11 @@ const Index = ({ title = "Admin Details" }) => {
         </div>
         {/*end*/}
       </Card>
-      {/* <Modal isOpen={isAddModalOpen} onClose={() => setIsAddModalOpen(false)} title="Add New Patient">
-        <AddNewModal />
-      </Modal> */}
+      {/* {isNewModalOpen && (
+        <Modal onClose={handleCloseModal}>
+          <AddPatient/>
+        </Modal>
+      )} */}
     </>
   );
 };
