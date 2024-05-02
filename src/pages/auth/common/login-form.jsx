@@ -17,7 +17,7 @@ const LoginForm = () => {
   };
 
   const validationSchema = Yup.object({
-    username: Yup.string().required('username is required'),
+    username: Yup.string().required('Username is required'),
     password: Yup.string().required('Password is required'),
   });
 
@@ -42,8 +42,6 @@ const LoginForm = () => {
     }
   };
 
-  
-
   return (
     <>
       <Formik
@@ -53,11 +51,11 @@ const LoginForm = () => {
       >
         <Form className="space-y-4 mt-5 justify-items-center">
           <div className="flex flex-col space-y-1">
-            {/* <label htmlFor="username">username</label> */}
+            {/* <label htmlFor="username">Username</label> */}
             <Field
               id="username"
               name="username"
-              placeholder="username"
+              placeholder="Username"
               type="text"
               className="h-[48px] border rounded-full px-3"
             />
