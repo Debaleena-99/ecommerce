@@ -3,7 +3,10 @@ import Modal from "@/components/ui/Modal"; // Import your modal component here
 import Card from "@/components/ui/Card";
 import Icon from "@/components/ui/Icon";
 import Tooltip from "@/components/ui/Tooltip";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleAddModal } from "../app/projects/store";
 import { advancedTable } from "../../constant/table-data";
+import AddProject from "../app/projects/AddProject";
 import {
   useTable,
   useRowSelect,
@@ -119,7 +122,7 @@ const Index = ({ title = "City Details" }) => {
     //   setIsModalOpen(false);
     // };
 
-
+    const dispatch = useDispatch();
     
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => advancedTable, []);
@@ -162,7 +165,14 @@ const Index = ({ title = "City Details" }) => {
         <div className="ltr:text-right rtl:text-left">
         {/* <button onClick={handleOpenModal}>Add New City</button>
         <NewCityModal isOpen={isModalOpen} onClose={handleCloseModal} />  */}
-        <Modal
+        <Button
+            icon="heroicons-outline:plus"
+            text="Add Project"
+            className="btn-dark dark:bg-slate-800  h-min text-sm font-normal"
+            iconClass=" text-lg"
+            onClick={() => dispatch(toggleAddModal(true))}
+          />
+        {/* <Modal
             title="Add New City"
             label="+ Add New"
             labelClass="bg-sky-900  hover:bg-cyan-700 text-white"
@@ -177,14 +187,14 @@ const Index = ({ title = "City Details" }) => {
                 }}
               />
             }
-          >
-            <div className="text-base text-slate-600 dark:text-slate-300">
+          > */}
+            {/* <div className="text-base text-slate-600 dark:text-slate-300">
               Oat cake ice cream candy chocolate cake chocolate cake cotton
               candy dragée apple pie. Brownie carrot cake candy canes bonbon
               fruitcake topping halvah. Cake sweet roll cake cheesecake cookie
               chocolate cake liquorice.
-            </div>
-          </Modal>
+            </div> */}
+          {/* </Modal> */}
         </div>
       </div>
       <Card>
@@ -329,6 +339,7 @@ const Index = ({ title = "City Details" }) => {
         </div>
         {/*end*/}
       </Card>
+      <AddProject />
     </>
   );
 };

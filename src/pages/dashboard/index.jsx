@@ -36,7 +36,7 @@ const Dashboard = () => {
         </div> */}
       {/* </div> */}
       <div className="grid grid-cols-12 gap-5">
-        <div className="lg:col-span-7 col-span-12">
+        <div className="lg:col-span-9 col-span-12">
           <Card>
             <div className="legend-ring mb-10">
               <RevenueBarChart />

@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import Modal from "@/components/ui/Modal"; // Import your modal component here
+import Modal from "@/components/ui/Modal";
 import Card from "@/components/ui/Card";
 import Icon from "@/components/ui/Icon";
 import Tooltip from "@/components/ui/Tooltip";
@@ -69,8 +69,8 @@ const COLUMNS = [
         <span className="block w-full">
           <span
             className={` inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 ${row?.cell?.value === "Active"
-                ? "text-success-600 bg-success-500"
-                : ""
+              ? "text-success-600 bg-success-500"
+              : ""
               } 
             ${row?.cell?.value === "Inactive"
                 ? "text-danger-600 bg-danger-500"
@@ -89,22 +89,12 @@ const COLUMNS = [
     accessor: "action",
     Cell: ({ row }) => {
       const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-
-      // Handle delete button click
       const handleDeleteClick = () => {
-        // alert('hii');
         setIsDeleteModalOpen(true);
       };
-
-      // Handle confirm delete in modal
       const handleConfirmDelete = () => {
-        // Perform deletion logic here
-
-        // Close the modal
         setIsDeleteModalOpen(false);
       };
-
-      // Handle cancel delete in modal
       const handleCancelDelete = () => {
         setIsDeleteModalOpen(false);
       };
@@ -173,7 +163,20 @@ const IndeterminateCheckbox = React.forwardRef(
 const Index = ({ title = "Admin Details" }) => {
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => advancedTable, []);
+  const [isAddProjectModalOpen, setIsAddProjectModalOpen] = useState(false);
 
+  const openAddProjectModal = () => {
+    setIsAddProjectModalOpen(true);
+  };
+
+  const closeAddProjectModal = () => {
+    setIsAddProjectModalOpen(false);
+  };
+
+  const handleAddProjectSubmit = (formData) => {
+    // Handle submission logic here
+    console.log("Submitted data:", formData);
+  };
   const tableInstance = useTable(
     {
       columns,
@@ -183,26 +186,7 @@ const Index = ({ title = "Admin Details" }) => {
     useGlobalFilter,
     useSortBy,
     usePagination
-    // useRowSelect,
 
-    // (hooks) => {
-    //   hooks.visibleColumns.push((columns) => [
-    //     {
-    //       id: "selection",
-    //       Header: ({ getToggleAllRowsSelectedProps }) => (
-    //         <div>
-    //           <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
-    //         </div>
-    //       ),
-    //       Cell: ({ row }) => (
-    //         <div>
-    //           <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
-    //         </div>
-    //       ),
-    //     },
-    //     ...columns,
-    //   ]);
-    // }
   );
   const {
     getTableProps,
@@ -390,8 +374,8 @@ const Index = ({ title = "Admin Details" }) => {
                   href="#"
                   aria-current="page"
                   className={` ${pageIdx === pageIndex
-                      ? "bg-slate-900 dark:bg-slate-600  dark:text-slate-200 text-white font-medium "
-                      : "bg-slate-100 dark:bg-slate-700 dark:text-slate-400 text-slate-900  font-normal  "
+                    ? "bg-slate-900 dark:bg-slate-600  dark:text-slate-200 text-white font-medium "
+                    : "bg-slate-100 dark:bg-slate-700 dark:text-slate-400 text-slate-900  font-normal  "
                     }    text-sm rounded leading-[16px] flex h-6 w-6 items-center justify-center transition-all duration-150`}
                   onClick={() => gotoPage(pageIdx)}
                 >
