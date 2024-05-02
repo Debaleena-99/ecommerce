@@ -57,6 +57,18 @@ export const menuItems = [
     link: "ManageAdmin",
   },
   {
+    title: "Manage City",
+    isHide: true,
+    icon: "heroicons-outline:chat",
+    link: "ManageCity",
+  },
+  {
+    title: "Manage Branch",
+    isHide: true,
+    icon: "heroicons-outline:chat",
+    link: "ManageBranch",
+  },
+  {
     title: "Manage Patient",
     isHide: true,
     icon: "heroicons-outline:chat",

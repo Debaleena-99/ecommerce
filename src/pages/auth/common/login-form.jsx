@@ -91,7 +91,7 @@ const LoginForm = () => {
                 name="keepSignedIn"
                 className="text-white me-2"
               />
-               Keep me signed in
+               Keep me signed in 0lelplR
             </label>
             {/* <Link
               to="/forgot-password"

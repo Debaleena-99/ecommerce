@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import Modal from "@/components/ui/Modal";
+import Modal from "@/components/ui/Modal"; // Import your modal component here
 import Card from "@/components/ui/Card";
 import Icon from "@/components/ui/Icon";
 import Tooltip from "@/components/ui/Tooltip";
@@ -12,21 +12,21 @@ import {
   usePagination,
 } from "react-table";
 import GlobalFilter from "../table/react-tables/GlobalFilter";
-import DeleteAdmin from "./DeleteAdmin";
 import Button from "@/components/ui/Button";
 import { Link } from "react-router-dom";
+import NewCityModal from "./AddCity";
 
 const COLUMNS = [
   {
 
-    Header: "Bramch Id",
+    Header: "City Id",
     accessor: "id",
     Cell: (row) => {
       return <span>{row?.cell?.value}</span>;
     },
   },
   {
-    Header: "Branch Name",
+    Header: "City Name",
     accessor: "customer",
     Cell: (row) => {
       return (
@@ -54,58 +54,14 @@ const COLUMNS = [
       return <span>{row?.cell?.value}</span>;
     },
   },
-  {
-    Header: "quantity",
-    accessor: "quantity",
-    Cell: (row) => {
-      return <span>{row?.cell?.value}</span>;
-    },
-  },
-  {
-    Header: "status",
-    accessor: "status",
-    Cell: (row) => {
-      return (
-        <span className="block w-full">
-          <span
-            className={` inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 ${row?.cell?.value === "Active"
-              ? "text-success-600 bg-success-500"
-              : ""
-              } 
-            ${row?.cell?.value === "Inactive"
-                ? "text-danger-600 bg-danger-500"
-                : ""
-              }
-          `}
-          >
-            {row?.cell?.value}
-          </span>
-        </span>
-      );
-    },
-  },
+
   {
     Header: "action",
     accessor: "action",
     Cell: ({ row }) => {
-      const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-      const handleDeleteClick = () => {
-        setIsDeleteModalOpen(true);
-      };
-      const handleConfirmDelete = () => {
-        setIsDeleteModalOpen(false);
-      };
-      const handleCancelDelete = () => {
-        setIsDeleteModalOpen(false);
-      };
 
       return (
         <div className="flex space-x-3 rtl:space-x-reverse">
-          {/* <Tooltip content="View" placement="top" arrow animation="shift-away">
-            <button className="action-btn" type="button">
-              <Icon icon="heroicons:eye" />
-            </button>
-          </Tooltip> */}
           <Tooltip content="Edit" placement="top" arrow animation="shift-away">
             <button className="action-btn" type="button">
               <Icon icon="heroicons:pencil-square" />
@@ -118,20 +74,10 @@ const COLUMNS = [
             animation="shift-away"
             theme="danger"
           >
-            <button className="action-btn" type="button" onClick={handleDeleteClick}>
+            <button className="action-btn" type="button">
               <Icon icon="heroicons:trash" />
             </button>
           </Tooltip>
-          {/* Delete confirmation modal */}
-          {isDeleteModalOpen && (
-            <DeleteAdmin
-              title="Confirm Deletion"
-              onConfirm={handleConfirmDelete}
-              onCancel={handleCancelDelete}
-            >
-              <p className="text-red-600">Are you sure you want to delete this item?</p>
-            </DeleteAdmin>
-          )}
         </div>
       );
     },
@@ -160,23 +106,24 @@ const IndeterminateCheckbox = React.forwardRef(
   }
 );
 
-const Index = ({ title = "Admin Details" }) => {
+const Index = ({ title = "City Details" }) => {
+
+
+    // const [isModalOpen, setIsModalOpen] = useState(false);
+
+    // const handleOpenModal = () => {
+    //   setIsModalOpen(true);
+    // };
+  
+    // const handleCloseModal = () => {
+    //   setIsModalOpen(false);
+    // };
+
+
+    
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => advancedTable, []);
-  const [isAddProjectModalOpen, setIsAddProjectModalOpen] = useState(false);
 
-  const openAddProjectModal = () => {
-    setIsAddProjectModalOpen(true);
-  };
-
-  const closeAddProjectModal = () => {
-    setIsAddProjectModalOpen(false);
-  };
-
-  const handleAddProjectSubmit = (formData) => {
-    // Handle submission logic here
-    console.log("Submitted data:", formData);
-  };
   const tableInstance = useTable(
     {
       columns,
@@ -186,7 +133,6 @@ const Index = ({ title = "Admin Details" }) => {
     useGlobalFilter,
     useSortBy,
     usePagination
-
   );
   const {
     getTableProps,
@@ -211,10 +157,13 @@ const Index = ({ title = "Admin Details" }) => {
 
   return (
     <>
+    {/* <div className="grid xl:grid-cols-2 grid-cols-1 gap-5"></div> */}
      <div className="lg:col-span-2 col-span-1 mb-2">
         <div className="ltr:text-right rtl:text-left">
+        {/* <button onClick={handleOpenModal}>Add New City</button>
+        <NewCityModal isOpen={isModalOpen} onClose={handleCloseModal} />  */}
         <Modal
-            title="Add New Admin"
+            title="Add New City"
             label="+ Add New"
             labelClass="bg-sky-900  hover:bg-cyan-700 text-white"
             themeClass="bg-cyan-700"
@@ -229,9 +178,6 @@ const Index = ({ title = "Admin Details" }) => {
               />
             }
           >
-            {/* <h4 className="font-medium text-lg mb-3 text-slate-900">
-              Add New Admin
-            </h4> */}
             <div className="text-base text-slate-600 dark:text-slate-300">
               Oat cake ice cream candy chocolate cake chocolate cake cotton
               candy dragée apple pie. Brownie carrot cake candy canes bonbon
@@ -239,32 +185,8 @@ const Index = ({ title = "Admin Details" }) => {
               chocolate cake liquorice.
             </div>
           </Modal>
-        {/* <button class="btn mb-2 transition duration-700 bg-sky-900 hover:bg-cyan-700 text-white ease-in-out ..." type="button"> */}
-        {/* <Icon icon="heroicons:plus" className="w-7 h-6" /> */}
-        {/* <Link to="">+ Add  New</Link></button> */}
         </div>
       </div>
-      
-      {/* <button class="flex justify-items-end btn mb-2 transition duration-700 bg-sky-900 hover:bg-cyan-700 text-white ease-in-out ..." type="button">
-        <Icon icon="heroicons:plus" className="w-7 h-6" />Add  New</button> */}
-      {/* <div className="flex flex-wrap justify-between items-center mb-4">
-        <h4 className="font-medium lg:text-2xl text-xl capitalize text-slate-900 inline-block ltr:pr-4 rtl:pl-4">
-          ADMIN
-        </h4>
-        <div
-          className=" md:flex md:space-x-4 md:justify-end items-center rtl:space-x-reverse"
-        >
-          
-          <Button
-            icon="heroicons-outline:plus"
-            text="Add New Admin"
-            className="btn-dark bg-sky-900 dark:bg-slate-800  h-min text-sm font-normal"
-            iconClass=" text-lg" onClick={handleNewButtonClick}
-            
-          />
-        </div>
-      </div> */}
-      
       <Card>
 
         <div className="md:flex justify-between items-center mb-6">
@@ -374,8 +296,8 @@ const Index = ({ title = "Admin Details" }) => {
                   href="#"
                   aria-current="page"
                   className={` ${pageIdx === pageIndex
-                    ? "bg-slate-900 dark:bg-slate-600  dark:text-slate-200 text-white font-medium "
-                    : "bg-slate-100 dark:bg-slate-700 dark:text-slate-400 text-slate-900  font-normal  "
+                      ? "bg-slate-900 dark:bg-slate-600  dark:text-slate-200 text-white font-medium "
+                      : "bg-slate-100 dark:bg-slate-700 dark:text-slate-400 text-slate-900  font-normal  "
                     }    text-sm rounded leading-[16px] flex h-6 w-6 items-center justify-center transition-all duration-150`}
                   onClick={() => gotoPage(pageIdx)}
                 >
