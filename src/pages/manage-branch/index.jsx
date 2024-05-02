@@ -4,6 +4,8 @@ import Card from "@/components/ui/Card";
 import Icon from "@/components/ui/Icon";
 import Tooltip from "@/components/ui/Tooltip";
 import { advancedTable } from "../../constant/table-data";
+import { toggleAddModal } from "../app/projects/store";
+import { useSelector, useDispatch } from "react-redux";
 import {
   useTable,
   useRowSelect,
@@ -14,6 +16,7 @@ import {
 import GlobalFilter from "../table/react-tables/GlobalFilter";
 import Button from "@/components/ui/Button";
 import { Link } from "react-router-dom";
+import Addbranch from "./Addbranch";
 
 const COLUMNS = [
   {
@@ -145,6 +148,7 @@ const IndeterminateCheckbox = React.forwardRef(
 const Index = ({ title = "Admin Details" }) => {
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => advancedTable, []);
+  const dispatch = useDispatch();
 
   const tableInstance = useTable(
     {
@@ -181,29 +185,13 @@ const Index = ({ title = "Admin Details" }) => {
     <>
      <div className="lg:col-span-2 col-span-1 mb-2">
         <div className="ltr:text-right rtl:text-left">
-        <Modal
-            title="Add New Admin"
-            label="+ Add New"
-            labelClass="bg-sky-900  hover:bg-cyan-700 text-white"
-            themeClass="bg-cyan-700"
-            uncontrol
-            footerContent={
-              <Button
-                text="Accept"
-                className="btn-success mb-2"
-                onClick={() => {
-                  alert("use Control Modal");
-                }}
-              />
-            }
-          >
-            <div className="text-base text-slate-600 dark:text-slate-300">
-              Oat cake ice cream candy chocolate cake chocolate cake cotton
-              candy dragée apple pie. Brownie carrot cake candy canes bonbon
-              fruitcake topping halvah. Cake sweet roll cake cheesecake cookie
-              chocolate cake liquorice.
-            </div>
-          </Modal>
+        <Button
+            icon="heroicons-outline:plus"
+            text="Add Branch"
+            className="btn-dark dark:bg-slate-800  h-min text-sm font-normal"
+            iconClass=" text-lg"
+            onClick={() => dispatch(toggleAddModal(true))}
+          />
         </div>
       </div>
       <Card>
@@ -348,6 +336,7 @@ const Index = ({ title = "Admin Details" }) => {
         </div>
         {/*end*/}
       </Card>
+      <Addbranch/>
     </>
   );
 };

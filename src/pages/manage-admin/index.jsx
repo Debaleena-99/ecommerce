@@ -4,6 +4,8 @@ import Card from "@/components/ui/Card";
 import Icon from "@/components/ui/Icon";
 import Tooltip from "@/components/ui/Tooltip";
 import { advancedTable } from "../../constant/table-data";
+import { toggleAddModal } from "../app/projects/store";
+import { useSelector, useDispatch } from "react-redux";
 import {
   useTable,
   useRowSelect,
@@ -15,6 +17,7 @@ import GlobalFilter from "../table/react-tables/GlobalFilter";
 import DeleteAdmin from "./DeleteAdmin";
 import Button from "@/components/ui/Button";
 import { Link } from "react-router-dom";
+import Addrole from "./Addrole";
 
 const COLUMNS = [
   {
@@ -161,6 +164,7 @@ const IndeterminateCheckbox = React.forwardRef(
 );
 
 const Index = ({ title = "Admin Details" }) => {
+  const dispatch = useDispatch();
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => advancedTable, []);
   const [isAddProjectModalOpen, setIsAddProjectModalOpen] = useState(false);
@@ -213,57 +217,17 @@ const Index = ({ title = "Admin Details" }) => {
     <>
      <div className="lg:col-span-2 col-span-1 mb-2">
         <div className="ltr:text-right rtl:text-left">
-        <Modal
-            title="Add New Admin"
-            label="+ Add New"
-            labelClass="bg-sky-900  hover:bg-cyan-700 text-white"
-            themeClass="bg-cyan-700"
-            uncontrol
-            footerContent={
-              <Button
-                text="Accept"
-                className="btn-success mb-2"
-                onClick={() => {
-                  alert("use Control Modal");
-                }}
-              />
-            }
-          >
-            {/* <h4 className="font-medium text-lg mb-3 text-slate-900">
-              Add New Admin
-            </h4> */}
-            <div className="text-base text-slate-600 dark:text-slate-300">
-              Oat cake ice cream candy chocolate cake chocolate cake cotton
-              candy dragée apple pie. Brownie carrot cake candy canes bonbon
-              fruitcake topping halvah. Cake sweet roll cake cheesecake cookie
-              chocolate cake liquorice.
-            </div>
-          </Modal>
-        {/* <button class="btn mb-2 transition duration-700 bg-sky-900 hover:bg-cyan-700 text-white ease-in-out ..." type="button"> */}
-        {/* <Icon icon="heroicons:plus" className="w-7 h-6" /> */}
-        {/* <Link to="">+ Add  New</Link></button> */}
+        <Button
+            icon="heroicons-outline:plus"
+            text="Add Role"
+            className="btn-dark dark:bg-slate-800  h-min text-sm font-normal"
+            iconClass=" text-lg"
+            onClick={() => dispatch(toggleAddModal(true))}
+          />
         </div>
       </div>
       
-      {/* <button class="flex justify-items-end btn mb-2 transition duration-700 bg-sky-900 hover:bg-cyan-700 text-white ease-in-out ..." type="button">
-        <Icon icon="heroicons:plus" className="w-7 h-6" />Add  New</button> */}
-      {/* <div className="flex flex-wrap justify-between items-center mb-4">
-        <h4 className="font-medium lg:text-2xl text-xl capitalize text-slate-900 inline-block ltr:pr-4 rtl:pl-4">
-          ADMIN
-        </h4>
-        <div
-          className=" md:flex md:space-x-4 md:justify-end items-center rtl:space-x-reverse"
-        >
-          
-          <Button
-            icon="heroicons-outline:plus"
-            text="Add New Admin"
-            className="btn-dark bg-sky-900 dark:bg-slate-800  h-min text-sm font-normal"
-            iconClass=" text-lg" onClick={handleNewButtonClick}
-            
-          />
-        </div>
-      </div> */}
+      
       
       <Card>
 
@@ -407,6 +371,7 @@ const Index = ({ title = "Admin Details" }) => {
         </div>
         {/*end*/}
       </Card>
+      <Addrole/>
     </>
   );
 };
