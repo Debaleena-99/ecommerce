@@ -3,9 +3,7 @@ import Modal from "@/components/ui/Modal"; // Import your modal component here
 import Card from "@/components/ui/Card";
 import Icon from "@/components/ui/Icon";
 import Tooltip from "@/components/ui/Tooltip";
-import { useSelector, useDispatch } from "react-redux";
-import { toggleAddModal } from "../app/projects/store";
-import { advancedTable } from "../../constant/table-data";  
+import { advancedTable } from "../../constant/table-data";
 import {
   useTable,
   useRowSelect,
@@ -16,19 +14,18 @@ import {
 import GlobalFilter from "../table/react-tables/GlobalFilter";
 import Button from "@/components/ui/Button";
 import { Link } from "react-router-dom";
-import AddCity from "./AddCity";
 
 const COLUMNS = [
   {
 
-    Header: "City Id",
+    Header: "Branch Id",
     accessor: "id",
     Cell: (row) => {
       return <span>{row?.cell?.value}</span>;
     },
   },
   {
-    Header: "City Name",
+    Header: "Branch Name",
     accessor: "customer",
     Cell: (row) => {
       return (
@@ -49,6 +46,13 @@ const COLUMNS = [
       );
     },
   },
+//   {
+//     Header: "City",
+//     accessor: "date",
+//     Cell: (row) => {
+//       return <span>{row?.cell?.value}</span>;
+//     },
+//   },
   {
     Header: "date",
     accessor: "date",
@@ -56,11 +60,41 @@ const COLUMNS = [
       return <span>{row?.cell?.value}</span>;
     },
   },
-
+  {
+    Header: "quantity",
+    accessor: "quantity",
+    Cell: (row) => {
+      return <span>{row?.cell?.value}</span>;
+    },
+  },
+  {
+    Header: "status",
+    accessor: "status",
+    Cell: (row) => {
+      return (
+        <span className="block w-full">
+          <span
+            className={` inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 ${row?.cell?.value === "Active"
+                ? "text-success-600 bg-success-500"
+                : ""
+              } 
+            ${row?.cell?.value === "Inactive"
+                ? "text-danger-600 bg-danger-500"
+                : ""
+              }
+          `}
+          >
+            {row?.cell?.value}
+          </span>
+        </span>
+      );
+    },
+  },
   {
     Header: "action",
     accessor: "action",
     Cell: ({ row }) => {
+     
 
       return (
         <div className="flex space-x-3 rtl:space-x-reverse">
@@ -108,10 +142,7 @@ const IndeterminateCheckbox = React.forwardRef(
   }
 );
 
-const Index = ({ title = "City Details" }) => {
-
-    const dispatch = useDispatch();
-    
+const Index = ({ title = "Admin Details" }) => {
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => advancedTable, []);
 
@@ -148,18 +179,31 @@ const Index = ({ title = "City Details" }) => {
 
   return (
     <>
-    {/* <div className="grid xl:grid-cols-2 grid-cols-1 gap-5"></div> */}
      <div className="lg:col-span-2 col-span-1 mb-2">
         <div className="ltr:text-right rtl:text-left">
-        {/* <button onClick={handleOpenModal}>Add New City</button>
-        <NewCityModal isOpen={isModalOpen} onClose={handleCloseModal} />  */}
-        <Button
-            icon="heroicons-outline:plus"
-            text=" Add City"
-            className="btn-dark dark:bg-slate-800  h-min text-sm font-normal"
-            iconClass=" text-lg"
-            onClick={() => dispatch(toggleAddModal(true))}
-          />
+        <Modal
+            title="Add New Admin"
+            label="+ Add New"
+            labelClass="bg-sky-900  hover:bg-cyan-700 text-white"
+            themeClass="bg-cyan-700"
+            uncontrol
+            footerContent={
+              <Button
+                text="Accept"
+                className="btn-success mb-2"
+                onClick={() => {
+                  alert("use Control Modal");
+                }}
+              />
+            }
+          >
+            <div className="text-base text-slate-600 dark:text-slate-300">
+              Oat cake ice cream candy chocolate cake chocolate cake cotton
+              candy dragée apple pie. Brownie carrot cake candy canes bonbon
+              fruitcake topping halvah. Cake sweet roll cake cheesecake cookie
+              chocolate cake liquorice.
+            </div>
+          </Modal>
         </div>
       </div>
       <Card>
@@ -304,7 +348,6 @@ const Index = ({ title = "City Details" }) => {
         </div>
         {/*end*/}
       </Card>
-      <AddCity />
     </>
   );
 };

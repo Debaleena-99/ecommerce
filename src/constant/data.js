@@ -69,6 +69,24 @@ export const menuItems = [
     link: "ManageBranch",
   },
   {
+    title: "Manage User",
+    isHide: true,
+    icon: "heroicons-outline:clipboard-check",
+    link: "ManageUser",
+  },
+  {
+    title: "Manage Lab",
+    isHide: true,
+    icon: "heroicons-outline:clipboard-check",
+    link: "ManageLab",
+  },
+  {
+    title: "Manage Lab Types",
+    isHide: true,
+    icon: "heroicons-outline:clipboard-check",
+    link: "ManageLabTypes",
+  },
+  {
     title: "Manage Patient",
     isHide: true,
     icon: "heroicons-outline:chat",

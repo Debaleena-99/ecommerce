@@ -12,27 +12,19 @@ const LoginForm = () => {
   const navigate = useNavigate();
 
   const initialValues = {
-    email: '',
+    username: '',
     password: '',
   };
 
   const validationSchema = Yup.object({
-    email: Yup.string().required('email is required'),
+    username: Yup.string().required('Username is required'),
     password: Yup.string().required('Password is required'),
   });
 
   const onSubmit = async (values) => {
     try {
-      const response = await axios.post(
-        "http://43.204.107.195:3005/api/login",
-        JSON.stringify(values), // Stringify values to JSON
-        {
-          headers: {
-            "Content-Type": "application/json", // Set content type to JSON
-          },
-        }
-      );
-  
+      const response = await axios.post("https://dummyjson.com/auth/login", values);
+
       if (response.status === 200) {
         if (response.data.token) {
           const token = response.data.token;
@@ -49,7 +41,6 @@ const LoginForm = () => {
       toast.error("Login failed: " + error.message);
     }
   };
-  
 
   return (
     <>
@@ -60,15 +51,15 @@ const LoginForm = () => {
       >
         <Form className="space-y-4 mt-5 justify-items-center">
           <div className="flex flex-col space-y-1">
-            {/* <label htmlFor="email">email</label> */}
+            {/* <label htmlFor="username">Username</label> */}
             <Field
-              id="email"
-              name="email"
-              placeholder="email"
+              id="username"
+              name="username"
+              placeholder="Username"
               type="text"
               className="h-[48px] border rounded-full px-3"
             />
-            <ErrorMessage name="email" component="div" className="text-red-500" />
+            <ErrorMessage name="username" component="div" className="text-red-500" />
           </div>
 
           <div className="flex flex-col space-y-1">

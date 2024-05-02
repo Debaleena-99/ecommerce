@@ -152,7 +152,7 @@ const AddProject = () => {
             register={register}
             error={errors.title}
           />
-          <div className="grid lg:grid-cols-2 gap-4 grid-cols-1">
+          {/* <div className="grid lg:grid-cols-2 gap-4 grid-cols-1">
             <FormGroup
               label="Start Date"
               id="default-picker"
@@ -259,8 +259,8 @@ const AddProject = () => {
                 {errors.tags?.message || errors.tags?.label.message}
               </div>
             )}
-          </div>
-          <Textarea label="Description" placeholder="Description" />
+          </div> */}
+          {/* <Textarea label="Description" placeholder="Description" /> */}
 
           <div className="ltr:text-right rtl:text-left">
             <button className="btn btn-dark  text-center">Add</button>
