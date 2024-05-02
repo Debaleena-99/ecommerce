@@ -10,6 +10,8 @@ const ProjectPage = lazy(() => import("./pages/dashboard/project"));
 const BankingPage = lazy(() => import("./pages/dashboard/banking"));
 
 const ManageAdmin = lazy(() => import("./pages/manage-admin"));
+const ManageCity = lazy(() => import("./pages/manage-city"));
+const ManageBranch = lazy(() => import("./pages/manage-branch"));
 const ManagePatient = lazy(() => import("./pages/manage-patient"));
 const Addnewpatient = lazy(() => import("./pages/manage-patient/Addnewpatient"));
 const ManageTests = lazy(() => import("./pages/manage-tests"));
@@ -161,6 +163,8 @@ function App() {
           <Route path="banking" element={<BankingPage />} />
 
           <Route path="ManageAdmin" element={<ManageAdmin />} />
+          <Route path="ManageCity" element={<ManageCity />} />
+          <Route path="ManageBranch" element={<ManageBranch />} />
           <Route path="ManagePatient" element={<ManagePatient />} />
           <Route path="ManagePatient/Addnewpatient" element={<Addnewpatient />} />
           <Route path="ManageTests" element={<ManageTests />} />

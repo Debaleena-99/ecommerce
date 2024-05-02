@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import axios from "axios";
 import Card from "@/components/ui/Card";
 import InputGroup from "@/components/ui/InputGroup";
@@ -12,13 +13,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 
 
-const FormValidationSchema = yup
-  .object({
-    fullname: yup.string().required("FullName is Required"),
-    password: yup.string().required("Password is Required"),
-    email: yup.string().email("Invalid email").required("Email is Required"),
-  })
-  .required();
+
 
 const AddNewPatient = () => {
   const [selectedFiles2, setSelectedFiles2] = useState([]);
@@ -28,6 +23,24 @@ const AddNewPatient = () => {
     { value: "female", label: "Female" },
     { value: "other", label: "Other" },
   ];
+
+  // const initialValues = {
+  //   fullname: '',
+  //   password: '',
+  // };
+
+  const FormValidationSchema = yup
+  .object({
+    fullname: yup.string().required("Full Name is Required"),
+    branchID: yup.number().required("Branch ID is Required"),
+    gender: yup.boolean().required("Gender is Required"),
+    patientAge: yup.number().required("Age is Required").positive(),
+    phoneNumber: yup.string()
+    .required("Phone Number is required")
+    .matches(/^[0-9]{10}$/, "Phone Number must be exactly 10 digits"),
+    address: yup.string().required("Address is required"),
+  })
+  .required();
 
   const {
     register,
@@ -79,9 +92,16 @@ const AddNewPatient = () => {
   };
 
   return (
+    <>
+    {/* <Formik
+        initialValues={initialValues}
+        FormValidationSchema={FormValidationSchema}
+        onSubmit={onSubmit}
+      ></Formik> */}
+    
     <div>
       <Card title="Add New Patient">
-        <form onSubmit={handleSubmit(onSubmit)} className="lg:grid-cols-2 grid gap-5 grid-cols-1">
+        <form onSubmit={handleSubmit(onSubmit)}  className="lg:grid-cols-2 grid gap-5 grid-cols-1">
           <InputGroup
             label="Full name"
             id="patientName"
@@ -95,12 +115,14 @@ const AddNewPatient = () => {
             id="branchID"
             type="number"
             placeholder="Branch Id"
+            error={errors.branchID}
           />
           <InputGroup
             label="Patient Age"
             id="patientAge"
             type="number"
             placeholder="Patient Age"
+            error={errors.patientAge}
           />
           <div >
             <label htmlFor=" hh2" className="form-label ">
@@ -117,6 +139,7 @@ const AddNewPatient = () => {
               placeholder="Select Gender"
               id="patientGender"
               name="patientGender"
+              error={errors.gender}
             />
           </div>
           <InputGroup
@@ -138,13 +161,15 @@ const AddNewPatient = () => {
             id="address"
             type="text"
             placeholder="Address"
+            error={errors.address}
 
           />
           <InputGroup
             label="Phone Number"
             id="phoneNumber"
-            type="text"
+            type="number"
             placeholder="Phone Number"
+            error={errors.phoneNumber}
 
           />
           <div>
@@ -170,6 +195,7 @@ const AddNewPatient = () => {
         </form>
       </Card>
     </div>
+   </>
   );
 };
 
