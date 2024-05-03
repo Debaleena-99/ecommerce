@@ -14,7 +14,7 @@ import {
   usePagination,
 } from "react-table";
 import GlobalFilter from "../table/react-tables/GlobalFilter";
-import DeleteAdmin from "./DeleteAdmin";
+import DeleteAdmin from "./DeleteRole";
 import Button from "@/components/ui/Button";
 import { Link } from "react-router-dom";
 import Addrole from "./Addrole";
@@ -22,14 +22,14 @@ import Addrole from "./Addrole";
 const COLUMNS = [
   {
 
-    Header: "Bramch Id",
+    Header: "Id",
     accessor: "id",
     Cell: (row) => {
       return <span>{row?.cell?.value}</span>;
     },
   },
   {
-    Header: "Branch Name",
+    Header: "Role Name",
     accessor: "customer",
     Cell: (row) => {
       return (
@@ -51,19 +51,19 @@ const COLUMNS = [
     },
   },
   {
-    Header: "date",
+    Header: "Description",
     accessor: "date",
     Cell: (row) => {
       return <span>{row?.cell?.value}</span>;
     },
   },
-  {
-    Header: "quantity",
-    accessor: "quantity",
-    Cell: (row) => {
-      return <span>{row?.cell?.value}</span>;
-    },
-  },
+  // {
+  //   Header: "quantity",
+  //   accessor: "quantity",
+  //   Cell: (row) => {
+  //     return <span>{row?.cell?.value}</span>;
+  //   },
+  // },
   {
     Header: "status",
     accessor: "status",
@@ -163,7 +163,7 @@ const IndeterminateCheckbox = React.forwardRef(
   }
 );
 
-const Index = ({ title = "Admin Details" }) => {
+const Index = ({ title = "Role Details" }) => {
   const dispatch = useDispatch();
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => advancedTable, []);

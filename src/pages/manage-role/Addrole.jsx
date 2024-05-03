@@ -94,7 +94,7 @@ const Addrole = () => {
 
   const FormValidationSchema = yup
     .object({
-      title: yup.string().required("Title is required"),
+      Role: yup.string().required("Role is required"),
       assign: yup.mixed().required("Assignee is required"),
       tags: yup.mixed().required("Tag is required"),
       startDate: yup
@@ -122,7 +122,7 @@ const Addrole = () => {
   const onSubmit = (data) => {
     const project = {
       id: uuidv4(),
-      name: data.title,
+      name: data.Role,
       assignee: data.assign,
       // get only data value from startDate and endDate
       category: null,
@@ -140,127 +140,19 @@ const Addrole = () => {
   return (
     <div>
       <Modal
-        title="Create Project"
+        title="Create New Role"
         labelclassName="btn-outline-dark"
         activeModal={openProjectModal}
         onClose={() => dispatch(toggleAddModal(false))}
       >
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 ">
           <Textinput
-            name="title"
-            label="Project Name"
-            placeholder="Project Name"
+            name="Role"
+            label="Role Name"
+            placeholder="Enter Role Name"
             register={register}
-            error={errors.title}
+            error={errors.Role}
           />
-          <div className="grid lg:grid-cols-2 gap-4 grid-cols-1">
-            <FormGroup
-              label="Start Date"
-              id="default-picker"
-              error={errors.startDate}
-            >
-              <Controller
-                name="startDate"
-                control={control}
-                render={({ field }) => (
-                  <Flatpickr
-                    className="form-control py-2"
-                    id="default-picker"
-                    placeholder="yyyy, dd M"
-                    value={startDate}
-                    onChange={(date) => {
-                      field.onChange(date);
-                    }}
-                    options={{
-                      altInput: true,
-                      altFormat: "F j, Y",
-                      dateFormat: "Y-m-d",
-                    }}
-                  />
-                )}
-              />
-            </FormGroup>
-            <FormGroup
-              label="End Date"
-              id="default-picker2"
-              error={errors.endDate}
-            >
-              <Controller
-                name="endDate"
-                control={control}
-                render={({ field }) => (
-                  <Flatpickr
-                    className="form-control py-2"
-                    id="default-picker2"
-                    placeholder="yyyy, dd M"
-                    value={endDate}
-                    onChange={(date) => {
-                      field.onChange(date);
-                    }}
-                    options={{
-                      altInput: true,
-                      altFormat: "F j, Y",
-                      dateFormat: "Y-m-d",
-                    }}
-                  />
-                )}
-              />
-            </FormGroup>
-          </div>
-          <div className={errors.assign ? "has-error" : ""}>
-            <label className="form-label" htmlFor="icon_s">
-              Assignee
-            </label>
-            <Controller
-              name="assign"
-              control={control}
-              render={({ field }) => (
-                <Select
-                  {...field}
-                  options={assigneeOptions}
-                  styles={styles}
-                  className="react-select"
-                  classNamePrefix="select"
-                  isMulti
-                  components={{
-                    Option: OptionComponent,
-                  }}
-                  id="icon_s"
-                />
-              )}
-            />
-            {errors.assign && (
-              <div className=" mt-2  text-danger-500 block text-sm">
-                {errors.assign?.message || errors.assign?.label.message}
-              </div>
-            )}
-          </div>
-
-          <div className={errors.tags ? "has-error" : ""}>
-            <label className="form-label" htmlFor="icon_s">
-              Tag
-            </label>
-            <Controller
-              name="tags"
-              control={control}
-              render={({ field }) => (
-                <Select
-                  {...field}
-                  options={options}
-                  styles={styles}
-                  className="react-select"
-                  classNamePrefix="select"
-                  isMulti
-                  id="icon_s"
-                />
-              )}
-            />
-            {errors.assign && (
-              <div className=" mt-2  text-danger-500 block text-sm">
-                {errors.tags?.message || errors.tags?.label.message}
-              </div>
-            )}
-          </div>
           <Textarea label="Description" placeholder="Description" />
 
           <div className="ltr:text-right rtl:text-left">

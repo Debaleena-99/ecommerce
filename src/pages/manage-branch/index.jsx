@@ -49,27 +49,27 @@ const COLUMNS = [
       );
     },
   },
-//   {
-//     Header: "City",
-//     accessor: "date",
-//     Cell: (row) => {
-//       return <span>{row?.cell?.value}</span>;
-//     },
-//   },
   {
-    Header: "date",
+    Header: "City",
     accessor: "date",
     Cell: (row) => {
       return <span>{row?.cell?.value}</span>;
     },
   },
-  {
-    Header: "quantity",
-    accessor: "quantity",
-    Cell: (row) => {
-      return <span>{row?.cell?.value}</span>;
-    },
-  },
+  // {
+  //   Header: "date",
+  //   accessor: "date",
+  //   Cell: (row) => {
+  //     return <span>{row?.cell?.value}</span>;
+  //   },
+  // },
+  // {
+  //   Header: "quantity",
+  //   accessor: "quantity",
+  //   Cell: (row) => {
+  //     return <span>{row?.cell?.value}</span>;
+  //   },
+  // },
   {
     Header: "status",
     accessor: "status",
@@ -145,7 +145,7 @@ const IndeterminateCheckbox = React.forwardRef(
   }
 );
 
-const Index = ({ title = "Admin Details" }) => {
+const Index = ({ title = "Branch Details" }) => {
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => advancedTable, []);
   const dispatch = useDispatch();

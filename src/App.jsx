@@ -9,7 +9,7 @@ const CrmPage = lazy(() => import("./pages/dashboard/crm"));
 const ProjectPage = lazy(() => import("./pages/dashboard/project"));
 const BankingPage = lazy(() => import("./pages/dashboard/banking"));
 
-const ManageAdmin = lazy(() => import("./pages/manage-admin"));
+const ManageRole = lazy(() => import("./pages/manage-role"));
 const ManageCity = lazy(() => import("./pages/manage-city"));
 const ManageBranch = lazy(() => import("./pages/manage-branch"));
 const ManageUser = lazy(() => import("./pages/manage-user"));
@@ -165,7 +165,7 @@ function App() {
           <Route path="project" element={<ProjectPage />} />
           <Route path="banking" element={<BankingPage />} />
 
-          <Route path="ManageAdmin" element={<ManageAdmin />} />
+          <Route path="ManageRole" element={<ManageRole />} />
           <Route path="ManageCity" element={<ManageCity />} />
           <Route path="ManageBranch" element={<ManageBranch />} />
           <Route path="ManageUser" element={<ManageUser />} />

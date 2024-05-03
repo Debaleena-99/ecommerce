@@ -1,14 +1,12 @@
-import React, { useState, useMemo } from "react";
-import Modal from "@/components/ui/Modal"; // Import your modal component here
+import React, { useState, useMemo, useEffect } from "react";
+import Modal from "@/components/ui/Modal";
 import Card from "@/components/ui/Card";
 import Icon from "@/components/ui/Icon";
 import Tooltip from "@/components/ui/Tooltip";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleAddModal } from "../app/projects/store";
-import { advancedTable } from "../../constant/table-data";  
 import {
   useTable,
-  useRowSelect,
   useSortBy,
   useGlobalFilter,
   usePagination,
@@ -19,49 +17,46 @@ import { Link } from "react-router-dom";
 import AddCity from "./AddCity";
 
 const COLUMNS = [
-  {
-
-    Header: "City Id",
-    accessor: "id",
-    Cell: (row) => {
-      return <span>{row?.cell?.value}</span>;
-    },
-  },
+  // {
+  //   Header: "City Id",
+  //   accessor: "id",
+  //   Cell: ({ row }) => {
+  //     return <span>{row.original.id}</span>;
+  //   },
+  // },
   {
     Header: "City Name",
-    accessor: "customer",
-    Cell: (row) => {
+    accessor: "CityName",
+    Cell: ({ row }) => {
       return (
         <div>
           <span className="inline-flex items-center">
             <span className="w-7 h-7 rounded-full ltr:mr-3 rtl:ml-3 flex-none bg-slate-600">
               <img
-                src={row?.cell?.value.image}
+                src={row.original.image}
                 alt=""
                 className="object-cover w-full h-full rounded-full"
               />
             </span>
             <span className="text-sm text-slate-600 dark:text-slate-300 capitalize">
-              {row?.cell?.value.name}
+              {row.original.name}
             </span>
           </span>
         </div>
       );
     },
   },
+  // {
+  //   Header: "Date",
+  //   accessor: "date",
+  //   Cell: ({ row }) => {
+  //     return <span>{row.original.date}</span>;
+  //   },
+  // },
   {
-    Header: "date",
-    accessor: "date",
-    Cell: (row) => {
-      return <span>{row?.cell?.value}</span>;
-    },
-  },
-
-  {
-    Header: "action",
+    Header: "Action",
     accessor: "action",
     Cell: ({ row }) => {
-
       return (
         <div className="flex space-x-3 rtl:space-x-reverse">
           <Tooltip content="Edit" placement="top" arrow animation="shift-away">
@@ -86,45 +81,30 @@ const COLUMNS = [
   },
 ];
 
-const IndeterminateCheckbox = React.forwardRef(
-  ({ indeterminate, ...rest }, ref) => {
-    const defaultRef = React.useRef();
-    const resolvedRef = ref || defaultRef;
-
-    React.useEffect(() => {
-      resolvedRef.current.indeterminate = indeterminate;
-    }, [resolvedRef, indeterminate]);
-
-    return (
-      <>
-        <input
-          type="checkbox"
-          ref={resolvedRef}
-          {...rest}
-          className="table-checkbox"
-        />
-      </>
-    );
-  }
-);
-
 const Index = ({ title = "City Details" }) => {
+  const dispatch = useDispatch();
+  const [data, setData] = useState([]);
 
-    const dispatch = useDispatch();
-    
+  useEffect(() => {
+    fetch("http://43.204.107.195:3005/api/cities")
+      .then((response) => response.json())
+      .then((data) => setData(data))
+      .catch((error) => console.error("Error fetching data:", error));
+  }, []);
+
   const columns = useMemo(() => COLUMNS, []);
-  const data = useMemo(() => advancedTable, []);
 
   const tableInstance = useTable(
     {
       columns,
       data,
+      initialState: { pageIndex: 0 }, // Start on the first page
     },
-
     useGlobalFilter,
     useSortBy,
     usePagination
   );
+
   const {
     getTableProps,
     getTableBodyProps,
@@ -148,12 +128,9 @@ const Index = ({ title = "City Details" }) => {
 
   return (
     <>
-    {/* <div className="grid xl:grid-cols-2 grid-cols-1 gap-5"></div> */}
-     <div className="lg:col-span-2 col-span-1 mb-2">
+      <div className="lg:col-span-2 col-span-1 mb-2">
         <div className="ltr:text-right rtl:text-left">
-        {/* <button onClick={handleOpenModal}>Add New City</button>
-        <NewCityModal isOpen={isModalOpen} onClose={handleCloseModal} />  */}
-        <Button
+          <Button
             icon="heroicons-outline:plus"
             text=" Add City"
             className="btn-dark dark:bg-slate-800  h-min text-sm font-normal"
@@ -163,7 +140,6 @@ const Index = ({ title = "City Details" }) => {
         </div>
       </div>
       <Card>
-
         <div className="md:flex justify-between items-center mb-6">
           <h4 className="card-title">{title}</h4>
           <div>
@@ -175,7 +151,7 @@ const Index = ({ title = "City Details" }) => {
             <div className="overflow-hidden ">
               <table
                 className="min-w-full divide-y divide-slate-100 table-fixed dark:divide-slate-700"
-                {...getTableProps}
+                {...getTableProps()}
               >
                 <thead className="bg-sky-900 dark:bg-slate-700">
                   {headerGroups.map((headerGroup) => (
@@ -203,7 +179,7 @@ const Index = ({ title = "City Details" }) => {
                 </thead>
                 <tbody
                   className="bg-white divide-y divide-slate-100 dark:bg-slate-800 dark:divide-slate-700"
-                  {...getTableBodyProps}
+                  {...getTableBodyProps()}
                 >
                   {page.map((row) => {
                     prepareRow(row);
@@ -252,7 +228,7 @@ const Index = ({ title = "City Details" }) => {
                 onClick={() => gotoPage(0)}
                 disabled={!canPreviousPage}
               >
-                <Icon icon="heroicons:chevron-double-left-solid" />
+                {"<<"}
               </button>
             </li>
             <li className="text-sm leading-4 text-slate-900 dark:text-white rtl:rotate-180">
@@ -297,12 +273,11 @@ const Index = ({ title = "City Details" }) => {
                 className={` ${!canNextPage ? "opacity-50 cursor-not-allowed" : ""
                   }`}
               >
-                <Icon icon="heroicons:chevron-double-right-solid" />
+                {">>"}
               </button>
             </li>
           </ul>
         </div>
-        {/*end*/}
       </Card>
       <AddCity />
     </>

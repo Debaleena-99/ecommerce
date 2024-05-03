@@ -51,10 +51,10 @@ export const menuItems = [
   //   title: "apps",
   // },
   {
-    title: "Manage Admin",
+    title: "Manage Role",
     isHide: true,
-    icon: "heroicons-outline:chat",
-    link: "ManageAdmin",
+    icon: "heroicons-outline:user-group",
+    link: "ManageRole",
   },
   {
     title: "Manage City",
@@ -89,7 +89,7 @@ export const menuItems = [
   {
     title: "Manage Patient",
     isHide: true,
-    icon: "heroicons-outline:chat",
+    icon: "heroicons-outline:user",
     link: "ManagePatient",
   },
   {
@@ -98,12 +98,12 @@ export const menuItems = [
     icon: "heroicons-outline:clipboard-check",
     link: "ManageTests",
   },
-  {
-    title: "CRUD",
-    isHide: true,
-    icon: "heroicons-outline:clipboard-check",
-    link: "crud",
-  },
+  // {
+  //   title: "CRUD",
+  //   isHide: true,
+  //   icon: "heroicons-outline:clipboard-check",
+  //   link: "crud",
+  // },
 ];
 
 export const topMenu = [

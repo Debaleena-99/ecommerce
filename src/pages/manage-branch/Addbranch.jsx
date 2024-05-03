@@ -94,7 +94,8 @@ const Addbranch = () => {
 
   const FormValidationSchema = yup
     .object({
-      title: yup.string().required("Title is required"),
+      branch: yup.string().required("Branch Name is required"),
+      city: yup.string().required("City is required"),
       assign: yup.mixed().required("Assignee is required"),
       tags: yup.mixed().required("Tag is required"),
       startDate: yup
@@ -122,8 +123,9 @@ const Addbranch = () => {
   const onSubmit = (data) => {
     const project = {
       id: uuidv4(),
-      name: data.title,
+      name: data.branch,
       assignee: data.assign,
+      city: data.city,
       // get only data value from startDate and endDate
       category: null,
       startDate: startDate.toISOString().split("T")[0],
@@ -140,20 +142,27 @@ const Addbranch = () => {
   return (
     <div>
       <Modal
-        title="Create Project"
+        title="Create Branch"
         labelclassName="btn-outline-dark"
         activeModal={openProjectModal}
         onClose={() => dispatch(toggleAddModal(false))}
       >
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 ">
           <Textinput
-            name="title"
-            label="Project Name"
-            placeholder="Project Name"
+            name="branch"
+            label="Branch Name"
+            placeholder="Enter Your Branch Name"
             register={register}
-            error={errors.title}
+            error={errors.branch}
           />
-          <div className="grid lg:grid-cols-2 gap-4 grid-cols-1">
+          <Textinput
+            name="city"
+            label="City"
+            placeholder="Enter City"
+            register={register}
+            error={errors.city}
+          />
+          {/* <div className="grid lg:grid-cols-2 gap-4 grid-cols-1">
             <FormGroup
               label="Start Date"
               id="default-picker"
@@ -261,7 +270,7 @@ const Addbranch = () => {
               </div>
             )}
           </div>
-          <Textarea label="Description" placeholder="Description" />
+          <Textarea label="Description" placeholder="Description" /> */}
 
           <div className="ltr:text-right rtl:text-left">
             <button className="btn btn-dark  text-center">Add</button>
