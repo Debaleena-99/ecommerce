@@ -15,61 +15,38 @@ import {
 } from "react-table";
 import GlobalFilter from "../table/react-tables/GlobalFilter";
 import Button from "@/components/ui/Button";
-import { Link } from "react-router-dom";
-import Addbranch from "./Addbranch";
+import Header from "@/components/partials/header";
 
 const COLUMNS = [
   {
 
-    Header: "Branch Id",
+    Header: "Customer Id",
     accessor: "id",
     Cell: (row) => {
       return <span>{row?.cell?.value}</span>;
     },
   },
   {
-    Header: "Branch Name",
-    accessor: "customer",
+    Header: "Customer Name",
+    accessor: "customer.name",
     Cell: (row) => {
-      return (
-        <div>
-          <span className="inline-flex items-center">
-            <span className="w-7 h-7 rounded-full ltr:mr-3 rtl:ml-3 flex-none bg-slate-600">
-              <img
-                src={row?.cell?.value.image}
-                alt=""
-                className="object-cover w-full h-full rounded-full"
-              />
-            </span>
-            <span className="text-sm text-slate-600 dark:text-slate-300 capitalize">
-              {row?.cell?.value.name}
-            </span>
-          </span>
-        </div>
-      );
+      return <span>{row?.cell?.value}</span>;
     },
   },
   {
-    Header: "City",
+    Header: " Date",
     accessor: "date",
     Cell: (row) => {
       return <span>{row?.cell?.value}</span>;
     },
   },
-  // {
-  //   Header: "date",
-  //   accessor: "date",
-  //   Cell: (row) => {
-  //     return <span>{row?.cell?.value}</span>;
-  //   },
-  // },
-  // {
-  //   Header: "quantity",
-  //   accessor: "quantity",
-  //   Cell: (row) => {
-  //     return <span>{row?.cell?.value}</span>;
-  //   },
-  // },
+  {
+    Header:" Order",
+    accessor: "order",
+    Cell: (row) => {
+      return <span>{row?.cell?.value}</span>;
+    },
+  },
   {
     Header: "status",
     accessor: "status",
@@ -145,7 +122,7 @@ const IndeterminateCheckbox = React.forwardRef(
   }
 );
 
-const Index = ({ title = "Branch Details" }) => {
+const Index = ({ title = "Customer Details" }) => {
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => advancedTable, []);
   const dispatch = useDispatch();
@@ -184,15 +161,6 @@ const Index = ({ title = "Branch Details" }) => {
   return (
     <>
      <div className="lg:col-span-2 col-span-1 mb-2">
-        <div className="ltr:text-right rtl:text-left">
-        <Button
-            icon="heroicons-outline:plus"
-            text="Add Branch"
-            className="btn-dark dark:bg-slate-800  h-min text-sm font-normal"
-            iconClass=" text-lg"
-            onClick={() => dispatch(toggleAddModal(true))}
-          />
-        </div>
       </div>
       <Card>
 
@@ -209,7 +177,7 @@ const Index = ({ title = "Branch Details" }) => {
                 className="min-w-full divide-y divide-slate-100 table-fixed dark:divide-slate-700"
                 {...getTableProps}
               >
-                <thead className="bg-sky-900 dark:bg-slate-700">
+                <thead className="bg-gray-700 dark:bg-slate-700">
                   {headerGroups.map((headerGroup) => (
                     <tr {...headerGroup.getHeaderGroupProps()}>
                       {headerGroup.headers.map((column) => (
@@ -336,7 +304,6 @@ const Index = ({ title = "Branch Details" }) => {
         </div>
         {/*end*/}
       </Card>
-      <Addbranch/>
     </>
   );
 };

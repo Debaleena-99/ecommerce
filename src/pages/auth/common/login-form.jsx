@@ -49,9 +49,8 @@ const LoginForm = () => {
         validationSchema={validationSchema}
         onSubmit={onSubmit}
       >
-        <Form className="space-y-4 mt-5 justify-items-center">
+        <Form className="space-y-4 justify-items-center ">
           <div className="flex flex-col space-y-1">
-            {/* <label htmlFor="username">Username</label> */}
             <Field
               id="username"
               name="username"
@@ -63,7 +62,6 @@ const LoginForm = () => {
           </div>
 
           <div className="flex flex-col space-y-1">
-            {/* <label htmlFor="password">Password</label> */}
             <Field
               id="password"
               name="password"
@@ -84,21 +82,11 @@ const LoginForm = () => {
           /></center>
           </div>
 
-          <div className="flex justify-between">
-            <label className="flex items-center text-white">
-              <Field
-                type="checkbox"
-                name="keepSignedIn"
-                className="text-white me-2"
-              />
-               Keep me signed in 0lelplR
+          <div className="flex items-center centre justify-center text-white text-center">
+            <label className="items-center centre justify-center text-white text-center">
+               Username : emilys <br></br>
+               Password : emilyspass
             </label>
-            {/* <Link
-              to="/forgot-password"
-              className="text-sm text-white dark:text-slate-400 leading-6 font-medium"
-            >
-              Forgot Password?
-            </Link> */}
           </div>
         </Form>
       </Formik>

@@ -1,44 +1,5 @@
 export const menuItems = [
-  // {
-  //   isHeadr: true,
-  //   title: "menu",
-  // },
 
-  // {
-  //   title: "Dashboard",
-  //   icon: "heroicons-outline:home",
-  //   isOpen: true,
-  //   isHide: true,
-  //   child: [
-      // {
-      //   childtitle: "Analytics Dashboard",
-      //   childlink: "dashboard",
-      // },
-      // {
-      //   childtitle: "Ecommerce Dashboard",
-      //   childlink: "ecommerce",
-      // },
-      // {
-      //   childtitle: "Project  Dashbaord",
-      //   childlink: "project",
-      // },
-      // {
-      //   childtitle: " CRM Dashbaord",
-      //   childlink: "crm",
-      // },
-      // {
-      //   childtitle: "Banking Dashboard",
-      //   childlink: "banking",
-      // },
-  //   ],
-  // },
-  // {
-  //   title: "changelog",
-  //   icon: "heroicons:arrow-trending-up",
-  //   link: "changelog",
-  //   isHide: false,
-  //   badge: "1.0.0",
-  // },
 
   {
     title: "Dashboard",
@@ -46,64 +7,25 @@ export const menuItems = [
     icon: "heroicons-outline:home",
     link: "Dashboard",
   },
-  // {
-  //   isHeadr: true,
-  //   title: "apps",
-  // },
   {
-    title: "Manage Role",
+    title: "Manage Product",
+    isHide: true,
+    icon: "heroicons-outline:chat",
+    link: "ManageProduct",
+  },
+ 
+  {
+    title: "Manage Customer",
     isHide: true,
     icon: "heroicons-outline:user-group",
-    link: "ManageRole",
+    link: "ManageCustomer",
   },
   {
-    title: "Manage City",
-    isHide: true,
-    icon: "heroicons-outline:chat",
-    link: "ManageCity",
-  },
-  {
-    title: "Manage Branch",
-    isHide: true,
-    icon: "heroicons-outline:chat",
-    link: "ManageBranch",
-  },
-  {
-    title: "Manage User",
+    title: "Manage Order ",
     isHide: true,
     icon: "heroicons-outline:clipboard-check",
-    link: "ManageUser",
+    link: "ManageOrder",
   },
-  {
-    title: "Manage Lab",
-    isHide: true,
-    icon: "heroicons-outline:clipboard-check",
-    link: "ManageLab",
-  },
-  {
-    title: "Manage Lab Types",
-    isHide: true,
-    icon: "heroicons-outline:clipboard-check",
-    link: "ManageLabTypes",
-  },
-  {
-    title: "Manage Patient",
-    isHide: true,
-    icon: "heroicons-outline:user",
-    link: "ManagePatient",
-  },
-  {
-    title: "Manage Tests",
-    isHide: true,
-    icon: "heroicons-outline:clipboard-check",
-    link: "ManageTests",
-  },
-  // {
-  //   title: "CRUD",
-  //   isHide: true,
-  //   icon: "heroicons-outline:clipboard-check",
-  //   link: "crud",
-  // },
 ];
 
 export const topMenu = [

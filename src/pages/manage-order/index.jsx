@@ -1,11 +1,9 @@
 import React, { useState, useMemo } from "react";
-import Modal from "@/components/ui/Modal";
+import Modal from "@/components/ui/Modal"; // Import your modal component here
 import Card from "@/components/ui/Card";
 import Icon from "@/components/ui/Icon";
 import Tooltip from "@/components/ui/Tooltip";
 import { advancedTable } from "../../constant/table-data";
-import { toggleAddModal } from "../app/projects/store";
-import { useSelector, useDispatch } from "react-redux";
 import {
   useTable,
   useRowSelect,
@@ -14,56 +12,39 @@ import {
   usePagination,
 } from "react-table";
 import GlobalFilter from "../table/react-tables/GlobalFilter";
-import DeleteAdmin from "./DeleteRole";
 import Button from "@/components/ui/Button";
 import { Link } from "react-router-dom";
-import Addrole from "./Addrole";
 
 const COLUMNS = [
   {
 
-    Header: "Id",
+    Header: "Order Id",
     accessor: "id",
     Cell: (row) => {
       return <span>{row?.cell?.value}</span>;
     },
   },
   {
-    Header: "Role Name",
-    accessor: "customer",
+    Header: "Product Name",
+    accessor: "product",
     Cell: (row) => {
-      return (
-        <div>
-          <span className="inline-flex items-center">
-            <span className="w-7 h-7 rounded-full ltr:mr-3 rtl:ml-3 flex-none bg-slate-600">
-              <img
-                src={row?.cell?.value.image}
-                alt=""
-                className="object-cover w-full h-full rounded-full"
-              />
-            </span>
-            <span className="text-sm text-slate-600 dark:text-slate-300 capitalize">
-              {row?.cell?.value.name}
-            </span>
-          </span>
-        </div>
-      );
+      return <span>{row?.cell?.value}</span>;
     },
   },
   {
-    Header: "Description",
+    Header: "date",
     accessor: "date",
     Cell: (row) => {
       return <span>{row?.cell?.value}</span>;
     },
   },
-  // {
-  //   Header: "quantity",
-  //   accessor: "quantity",
-  //   Cell: (row) => {
-  //     return <span>{row?.cell?.value}</span>;
-  //   },
-  // },
+  {
+    Header: "quantity",
+    accessor: "quantity",
+    Cell: (row) => {
+      return <span>{row?.cell?.value}</span>;
+    },
+  },
   {
     Header: "status",
     accessor: "status",
@@ -72,8 +53,8 @@ const COLUMNS = [
         <span className="block w-full">
           <span
             className={` inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 ${row?.cell?.value === "Active"
-              ? "text-success-600 bg-success-500"
-              : ""
+                ? "text-success-600 bg-success-500"
+                : ""
               } 
             ${row?.cell?.value === "Inactive"
                 ? "text-danger-600 bg-danger-500"
@@ -91,24 +72,10 @@ const COLUMNS = [
     Header: "action",
     accessor: "action",
     Cell: ({ row }) => {
-      const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-      const handleDeleteClick = () => {
-        setIsDeleteModalOpen(true);
-      };
-      const handleConfirmDelete = () => {
-        setIsDeleteModalOpen(false);
-      };
-      const handleCancelDelete = () => {
-        setIsDeleteModalOpen(false);
-      };
+     
 
       return (
         <div className="flex space-x-3 rtl:space-x-reverse">
-          {/* <Tooltip content="View" placement="top" arrow animation="shift-away">
-            <button className="action-btn" type="button">
-              <Icon icon="heroicons:eye" />
-            </button>
-          </Tooltip> */}
           <Tooltip content="Edit" placement="top" arrow animation="shift-away">
             <button className="action-btn" type="button">
               <Icon icon="heroicons:pencil-square" />
@@ -121,20 +88,10 @@ const COLUMNS = [
             animation="shift-away"
             theme="danger"
           >
-            <button className="action-btn" type="button" onClick={handleDeleteClick}>
+            <button className="action-btn" type="button">
               <Icon icon="heroicons:trash" />
             </button>
           </Tooltip>
-          {/* Delete confirmation modal */}
-          {isDeleteModalOpen && (
-            <DeleteAdmin
-              title="Confirm Deletion"
-              onConfirm={handleConfirmDelete}
-              onCancel={handleCancelDelete}
-            >
-              <p className="text-red-600">Are you sure you want to delete this item?</p>
-            </DeleteAdmin>
-          )}
         </div>
       );
     },
@@ -163,24 +120,10 @@ const IndeterminateCheckbox = React.forwardRef(
   }
 );
 
-const Index = ({ title = "Role Details" }) => {
-  const dispatch = useDispatch();
+const Index = ({ title = "Order Details" }) => {
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => advancedTable, []);
-  const [isAddProjectModalOpen, setIsAddProjectModalOpen] = useState(false);
 
-  const openAddProjectModal = () => {
-    setIsAddProjectModalOpen(true);
-  };
-
-  const closeAddProjectModal = () => {
-    setIsAddProjectModalOpen(false);
-  };
-
-  const handleAddProjectSubmit = (formData) => {
-    // Handle submission logic here
-    console.log("Submitted data:", formData);
-  };
   const tableInstance = useTable(
     {
       columns,
@@ -190,7 +133,6 @@ const Index = ({ title = "Role Details" }) => {
     useGlobalFilter,
     useSortBy,
     usePagination
-
   );
   const {
     getTableProps,
@@ -216,19 +158,8 @@ const Index = ({ title = "Role Details" }) => {
   return (
     <>
      <div className="lg:col-span-2 col-span-1 mb-2">
-        <div className="ltr:text-right rtl:text-left">
-        <Button
-            icon="heroicons-outline:plus"
-            text="Add Role"
-            className="btn-dark dark:bg-slate-800  h-min text-sm font-normal"
-            iconClass=" text-lg"
-            onClick={() => dispatch(toggleAddModal(true))}
-          />
-        </div>
+        
       </div>
-      
-      
-      
       <Card>
 
         <div className="md:flex justify-between items-center mb-6">
@@ -244,7 +175,7 @@ const Index = ({ title = "Role Details" }) => {
                 className="min-w-full divide-y divide-slate-100 table-fixed dark:divide-slate-700"
                 {...getTableProps}
               >
-                <thead className="bg-sky-900 dark:bg-slate-700">
+                <thead className="bg-gray-700 dark:bg-slate-700">
                   {headerGroups.map((headerGroup) => (
                     <tr {...headerGroup.getHeaderGroupProps()}>
                       {headerGroup.headers.map((column) => (
@@ -338,8 +269,8 @@ const Index = ({ title = "Role Details" }) => {
                   href="#"
                   aria-current="page"
                   className={` ${pageIdx === pageIndex
-                    ? "bg-slate-900 dark:bg-slate-600  dark:text-slate-200 text-white font-medium "
-                    : "bg-slate-100 dark:bg-slate-700 dark:text-slate-400 text-slate-900  font-normal  "
+                      ? "bg-slate-900 dark:bg-slate-600  dark:text-slate-200 text-white font-medium "
+                      : "bg-slate-100 dark:bg-slate-700 dark:text-slate-400 text-slate-900  font-normal  "
                     }    text-sm rounded leading-[16px] flex h-6 w-6 items-center justify-center transition-all duration-150`}
                   onClick={() => gotoPage(pageIdx)}
                 >
@@ -371,7 +302,6 @@ const Index = ({ title = "Role Details" }) => {
         </div>
         {/*end*/}
       </Card>
-      <Addrole/>
     </>
   );
 };

@@ -4,21 +4,9 @@ import { Routes, Route, Navigate } from "react-router-dom";
 // home pages  & dashboard
 //import Dashboard from "./pages/dashboard";
 const Dashboard = lazy(() => import("./pages/Dashboard"));
-const Ecommerce = lazy(() => import("./pages/dashboard/ecommerce"));
-const CrmPage = lazy(() => import("./pages/dashboard/crm"));
-const ProjectPage = lazy(() => import("./pages/dashboard/project"));
-const BankingPage = lazy(() => import("./pages/dashboard/banking"));
-
-const ManageRole = lazy(() => import("./pages/manage-role"));
-const ManageCity = lazy(() => import("./pages/manage-city"));
-const ManageBranch = lazy(() => import("./pages/manage-branch"));
-const ManageUser = lazy(() => import("./pages/manage-user"));
-const ManageLab = lazy(() => import("./pages/manage-lab"));
-const ManageLabTypes = lazy(() => import("./pages/manage-labtypes"));
-const ManagePatient = lazy(() => import("./pages/manage-patient"));
-const Addnewpatient = lazy(() => import("./pages/manage-patient/Addnewpatient"));
-const ManageTests = lazy(() => import("./pages/manage-tests"));
-const Crud = lazy(() => import("./Crud"));
+const ManageProduct = lazy(() => import("./pages/manage-product"));
+const ManageCustomer = lazy(() => import("./pages/manage-customer"));
+const ManageOrder = lazy(() => import("./pages/manage-order"));
 
 
 const Login = lazy(() => import("./pages/auth/login"));
@@ -122,22 +110,6 @@ const ProjectDetailsPage = lazy(() =>
 const KanbanPage = lazy(() => import("./pages/app/kanban"));
 const CalenderPage = lazy(() => import("./pages/app/calendar"));
 
-//Ecommerce-Pages
-
-const EcommercePage = lazy(() => import("./pages/ecommerce"));
-
-import Loading from "@/components/Loading";
-import { ProductDetails } from "./pages/ecommerce/productDetails";
-import Cart from "./pages/ecommerce/cart";
-import Wishlist from "./pages/ecommerce/wish-list";
-import Orders from "./pages/ecommerce/orders";
-import OrderDetails from "./pages/ecommerce/orderDetails";
-import Checkout from "./pages/ecommerce/checkout";
-import EditProduct from "./pages/ecommerce/edit-product";
-import Customers from "./pages/ecommerce/customers";
-import Sellers from "./pages/ecommerce/sellers";
-import AddProduct from "./pages/ecommerce/add-product";
-import InvoiceEPage from "./pages/ecommerce/invoice-ecompage";
 
 function App() {
   return (
@@ -159,21 +131,10 @@ function App() {
         </Route>
         <Route path="/*" element={<Layout />}>
           <Route path="dashboard" element={<Dashboard />} />
-          <Route path="ecommerce" element={<Ecommerce />} />
-          <Route path="crud" element={<Crud />} />
-          <Route path="crm" element={<CrmPage />} />
-          <Route path="project" element={<ProjectPage />} />
-          <Route path="banking" element={<BankingPage />} />
-
-          <Route path="ManageRole" element={<ManageRole />} />
-          <Route path="ManageCity" element={<ManageCity />} />
-          <Route path="ManageBranch" element={<ManageBranch />} />
-          <Route path="ManageUser" element={<ManageUser />} />
-          <Route path="ManageLab" element={<ManageLab />} />
-          <Route path="ManageLabTypes" element={<ManageLabTypes />} />
-          <Route path="ManagePatient" element={<ManagePatient />} />
-          <Route path="ManagePatient/Addnewpatient" element={<Addnewpatient />} />
-          <Route path="ManageTests" element={<ManageTests />} />
+          <Route path="ManageProduct" element={<ManageProduct />} />
+          <Route path="ManageCustomer" element={<ManageCustomer />} />
+          <Route path="ManageOrder" element={<ManageOrder />} />
+        
 
 
           {/* App pages */}
@@ -239,45 +200,8 @@ function App() {
           <Route path="notifications" element={<NotificationPage />} />
           <Route path="changelog" element={<ChangelogPage />} />
 
-          <Route path="products" element={<EcommercePage />} />
-          <Route path="products/:id" element={<ProductDetails />} />
-          <Route path="cart" element={<Cart />} />
-          <Route path="wishlist" element={<Wishlist />} />
-          <Route path="orders" element={<Orders />} />
-          <Route path="order-details" element={<OrderDetails />} />
-          <Route path="checkout" element={<Checkout />} />
-          <Route path="add-product" element={<AddProduct />} />
-          <Route path="edit-product" element={<EditProduct />} />
-          <Route path="customers" element={<Customers />} />
-          <Route path="sellers" element={<Sellers />} />
-          <Route path="invoice-ecommerce" element={<InvoiceEPage />} />
-
           <Route path="*" element={<Navigate to="/404" />} />
         </Route>
-        <Route
-          path="/404"
-          element={
-            <Suspense fallback={<Loading />}>
-              <Error />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/coming-soon"
-          element={
-            <Suspense fallback={<Loading />}>
-              <ComingSoonPage />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/under-construction"
-          element={
-            <Suspense fallback={<Loading />}>
-              <UnderConstructionPage />
-            </Suspense>
-          }
-        />
       </Routes>
     </main>
   );
